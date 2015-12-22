@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>A-MUSIC</title>
+    
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-material-design.min.css" rel="stylesheet">
+    <link href="css/ripples.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <!-- Personalized CSS -->
+    <link href="css/theme.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="wrapper" class="toggled">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand" id="linkBrand">
+                    <a href="javascript:void(0)" >
+                        AMUSIC
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" id="linkSearch">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search
+                    </a>
+                </li>                
+                <li>
+                    <a href="javascript:void(0)" id="linkRecomendations">
+                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>Recomendations
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" id="linkSongs">
+                        <span class="glyphicon glyphicon-music" aria-hidden="true"></span>Songs<span class="badge">0</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" id="linkAlbums">
+                        <span class="glyphicon glyphicon-book" aria-hidden="true"></span>Albums<span class="badge">0
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" id="linkArtists">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Artists<span class="badge">0</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" id="linkSettings">
+                    <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>Settings
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" id="linkLogout">
+                        <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>Logout
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" >
+
+            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
+                <i class="material-icons toggled">reorder</i>
+            </a> 
+
+
+            <!-- BUSCADOR PRINCIPAL -->
+            <div id="formSearch" class="row well container-fluid primary">
+                <div class="col-md-3 col-xs-3 col-sm-4">                           
+                </div>
+
+                <div class="col-md-6 col-xs-6 col-sm-4">
+
+                    <h1>AMUSIC</h1> 
+                    
+                    <div class="form-group label-floating">
+                      <label class="control-label" for="addon2">Write a song, artist or album...</label>
+                      <div class="input-group">
+                            <input type="text" id="addon2" class="form-control">
+                            <span class="input-group-btn">
+                              <button type="button" id="searchButton" class="btn btn-fab btn-fab-mini" data-toggle="tooltip" data-placement="top" title="" data-original-title="Push to search a Song, Artist or Album!">
+                                <i class="material-icons">search</i>
+                              </button>
+                            </span>
+                      </div>
+                    </div> 
+                </div>
+
+                <!-- MOSTRAR/OCULTAR MINIREPRODUCTOR -->
+                <div class="col-md-3 col-xs-3 col-sm-4">                           
+                </div>
+            </div>
+
+            <!--1. RESULTATS DE CERCA -->
+            <div id="resultsSearch">
+
+                <!-- SONGS LIST -->
+                <h3 class="well">SONGS</h3> 
+                <div id="songsList" class="list-group"></div>
+                <!-- ALBUMS LIST -->
+                <h3 class="well">ALBUMS</h3> 
+                <div id="albumsList" class="container-fluid"></div>                     
+                <!-- ARTISTS LIST -->
+                <h3 class="well">ARTISTS</h3>
+                <div id="artistsList" class="list-group"></div>  
+            
+            </div>
+
+
+            <!-- MINIREPRODUCTOR -->
+            <nav id="miniPlayer" class="navbar navbar-default navbar-fixed-bottom">
+
+              <div class="container">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <img src="http://media.creativebloq.futurecdn.net/sites/creativebloq.com/files/images/2014/02/coldplay1.jpg" class="navbar-brand"> </img>
+                  <a class="navbar-brand" href="#">Song name</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="#contact">Album</a></li>
+                    <li class="active"><a href="#contact">Artist</a></li>
+
+                    </li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+
+                    <button id="play_pause" type="button" class="btn btn-fab btn-fab-mini">
+                        <i class="material-icons">play_circle_filled</i>
+                    </button>
+                    <button type="button" class="btn btn-fab btn-fab-mini">
+                        <i class="material-icons">playlist_play</i>
+                    </button>
+
+                  </ul>
+                </div><!--/.nav-collapse -->
+              </div>
+            </nav>    
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.tmpl.min.js"></script>
+    <script src="js/jquery.tmplPlus.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+   
+    <!-- SONGS TEMPLATE -->
+    <script id="songTemplate" type="text/x-jquery-tmpl">
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <img class="img-circle" src=${album.images[2].url}>
+            </div>
+            <div class="row-content">
+              <div class="action-secondary">
+                
+                <button type="button" class="btn btn-fab btn-fab-mini">
+                    <i class="material-icons">play_circle_filled</i>
+                    <a id="link" href=${preview_url}></a>
+                </button>
+    
+                <button type="button" class="btn btn-fab btn-fab-mini">
+                    <i class="material-icons">info</i>
+                </button>
+
+              </div>
+              <h4 class="list-group-item-heading">${name}</h4>
+
+              <p class="list-group-item-text">Album: ${album.name}</p>
+            </div>
+
+          <div class="list-group-separator"></div> 
+                         
+        </div>
+    </script>
+
+    <!-- ALBUM TEMPLATE -->
+    <script id="albumTemplate" type="text/x-jquery-tmpl">
+        <div id="cardAlbum" class="col-md-2">
+            <div class="card">
+                <div class="card-image">
+                    <img id="imgAlbum" class="img-responsive" src=${images[1].url}>
+                    <span class="card-title">${name}</span>
+                </div>
+                
+                <div class="card-content">
+                    <button type="button" class="btn btn-fab btn-fab-mini" data-type="button">
+                        <i class="material-icons">play_circle_filled</i>
+                    </button>
+                </div>
+                
+                <div class="card-action">
+                    <a href="#" target="new_blank">${album_type}</a>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <!-- ARTISTS TEMPLATE -->
+    <script id="artistTemplate" type="text/x-jquery-tmpl">
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <img class="img-circle" src=${images[1].url}>
+            </div>
+            <div class="row-content">
+              <div class="action-secondary">
+                
+                <button type="button" class="btn btn-fab btn-fab-mini">
+                    <i class="material-icons">play_circle_filled</i>
+                </button>
+    
+                <button type="button" class="btn btn-fab btn-fab-mini">
+                    <i class="material-icons">info</i>
+                </button>
+
+              </div>
+              <h4 class="list-group-item-heading">${name}</h4>
+
+              <p class="list-group-item-text">Popularity: ${popularity}</p>
+            </div>
+
+          <div class="list-group-separator"></div> 
+                         
+        </div>
+    </script>
+
+    <!-- Personalized Javascript -->
+    <script type="text/javascript" src="js/buttonsController.js"></script>
+    <script type="text/javascript" src="js/spotify-web-api-js.js"></script>
+    <script type="text/javascript" src="js/petitionController.js"></script>
+
+    <!-- Material Design JS -->
+    <script src="js/material.min.js"></script>
+    <script src="js/ripples.min.js"></script>
+
+
+    <!-- Inicialization material design -->
+    <script type="text/javascript">
+        $.material.init();
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+/*theme.css*/
+h1,h3{
+	text-align: center;
+	color: black;
+	font-weight: normal;
+}
+
+.glyphicon{
+	margin: 15px 25px 15px 0px;
+}
+
+.badge{
+	margin-left: 35px;
+	text-align: center;
+	display: none;
+}
+
+#linkBrand{
+	text-align: center;
+	padding-top: 15px;
+}
+
+.test{
+	display: none;
+}
+
+.img-circle {
+    border-radius: 50%;
+}
+
+#cardAlbum{
+	padding: 15px;
+}
+
+#imgAlbum{
+	width:100%;
+}
+
+#menu-toggle{
+	outline: none;
+	float: left;
+
+}
