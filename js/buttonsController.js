@@ -1,28 +1,49 @@
-(function buttonsController(){
+// (function buttonsController(){
+    var song = document.createElement('audio');
+    var isPlaying = false;
 
-    var song;
 
-    function checkSubmit() {
-        
+
+
+    function checkSubmit() {        
         if ( document.getElementById("addon2").value == "" ){
-            console.log("CANNOT SEARCH");
+            console.log("info: CANNOT SEARCH");
             return 0;
         }else{
-            console.log("CAN SEARCH");
+            console.log("info: CAN SEARCH");
             return 1;
         }
     }
 
-    function loadSong(){
-        if(song == null){
-            spotifyApi.searchTracks("Linoleum",{limit: 5}).then(function(data) {
-              console.log("LOADING SONG! ",data);
-              song = new Audio(data.tracks.items[0].preview_url);
-              song.play();
-            }, function(err) {
-              console.error(err);
-            });
+    function changeIconPlay(isPlaying){
+        if(isPlaying){
+            document.getElementById("iconPlayPause").innerHTML = "pause";
+        }else{
+            document.getElementById("iconPlayPause").innerHTML = "play_arrow";
         }
+    }
+
+
+    function playSong(url,urlImage,nameSong,nameAlbum){
+
+        document.getElementById("imagePlayingSong").src = urlImage;
+        document.getElementById("namePlayingSong").innerHTML = nameSong;
+        document.getElementById("albumPlayingSong").innerHTML = nameAlbum;
+
+        //TODO: CHANGE THIS FUNCTION, ITS CANCER WHAT IS DOING!!!   
+        if(!isPlaying){
+            song = new Audio(url);
+            song.play();
+            isPlaying = true;
+            changeIconPlay(isPlaying);
+        }else{
+            song.pause();
+            song = new Audio(url);
+            song.play();
+            isPlaying = true;
+            changeIconPlay(isPlaying);
+        }
+        
     }
 
     function show(){
@@ -31,7 +52,6 @@
         switch(this.id) {
             case "menu-toggle":
                 console.log("LINK TOGGLE MENU CLICKED!");
-                //this.id.preventDefault();
                 $("#wrapper").toggleClass("toggled");
                 break;
 
@@ -77,27 +97,25 @@
                 console.log("LINK SETTINGS CLICKED!");
                 break;
 
-            case "play_pause":
+            case "playButton":
                 console.log("LINK PLAYPAUSE CLICKED!");
-
-
-                loadSong(url);
                 if(song.paused){
+                    changeIconPlay(true);
                     song.play();
                 }else{
+                    changeIconPlay(false);
                     song.pause();
                 }                
                 break;
 
             default:
-                alert("ID ERROR");
+                alert("info: ID ERROR");
                 break;
         }
     }
 
 
     $(document).ready(function(){
-
         $('.form-control').keyup(function (e) {
             if (e.keyCode === 13 && checkSubmit()) {
                console.log("PETICIO: " + document.getElementById("addon2").value);
@@ -105,11 +123,9 @@
             }
           });
 
-        $(document).click(function (e)
-        {
+        $(document).click(function (e){
             var container = $("#wrapper");
-            if (!container.is(e.target) && container.has(e.target).length === 0 && event.target.id!=="menu-toggle")
-            {
+            if (!container.is(e.target) && container.has(e.target).length === 0 && event.target.id!=="menu-toggle"){
                 console.log("UNTOGGLE CLICKED!");
                 container.addClass("toggled"); 
             }
@@ -133,8 +149,8 @@
 
         $("#linkLogout").click(show); 
 
-        $("#play_pause").click(show); 
+        $("#playButton").click(show); 
 
     });
 
-}());
+// }());

@@ -34,9 +34,7 @@
 
             <ul class="sidebar-nav">
                 <li class="sidebar-brand" id="linkBrand">
-                    <a href="javascript:void(0)" >
-                        AMUSIC
-                    </a>
+                    <img id="logoImage" src="images/logo_provisional.png">
                 </li>
                 <li>
                     <a href="javascript:void(0)" id="linkSearch">
@@ -93,7 +91,7 @@
 
                 <div class="col-md-6 col-xs-6 col-sm-4">
 
-                    <h1>AMUSIC</h1> 
+                    <h1>A-MUSIC</h1> 
                     
                     <div class="form-group label-floating">
                       <label class="control-label" for="addon2">Write a song, artist or album...</label>
@@ -113,24 +111,23 @@
                 </div>
             </div>
 
-            <!--1. RESULTATS DE CERCA -->
+            <!--RESULTATS DE CERCA -->
             <div id="resultsSearch">
 
                 <!-- SONGS LIST -->
-                <h3 class="well">SONGS</h3> 
-                <div id="songsList" class="list-group"></div>
+                <h3 class="well">Songs</h3> 
+                <div id="songsList" class="list-group container-fluid"></div>
                 <!-- ALBUMS LIST -->
-                <h3 class="well">ALBUMS</h3> 
+                <h3 class="well">Albums</h3> 
                 <div id="albumsList" class="container-fluid"></div>                     
                 <!-- ARTISTS LIST -->
-                <h3 class="well">ARTISTS</h3>
-                <div id="artistsList" class="list-group"></div>  
+                <h3 class="well">Artists</h3>
+                <div id="artistsList" class="list-group container-fluid"></div>  
             
             </div>
 
-
             <!-- MINIREPRODUCTOR -->
-            <nav id="miniPlayer" class="navbar navbar-default navbar-fixed-bottom">
+            <nav id="miniPlayer" class="navbar navbar-fixed-bottom">
 
               <div class="container">
                 <div class="navbar-header">
@@ -140,25 +137,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <img src="http://media.creativebloq.futurecdn.net/sites/creativebloq.com/files/images/2014/02/coldplay1.jpg" class="navbar-brand"> </img>
-                  <a class="navbar-brand" href="#">Song name</a>
+                  <img id="imagePlayingSong" src="http://media.creativebloq.futurecdn.net/sites/creativebloq.com/files/images/2014/02/coldplay1.jpg" class="navbar-brand"></img>
+                  <p id="namePlayingSong" class="navbar-brand" >Song name</p>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">
-                    <li class="active"><a href="#contact">Album</a></li>
-                    <li class="active"><a href="#contact">Artist</a></li>
-
+                    <li>
+                        <a href="#" id="albumPlayingSong">Album</a>
                     </li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-
-                    <button id="play_pause" type="button" class="btn btn-fab btn-fab-mini">
-                        <i class="material-icons">play_circle_filled</i>
+                    <button id="playButton" type="button" class="btn btn-fab btn-fab-mini">
+                        <i id="iconPlayPause" class="material-icons">play_arrow</i>
                     </button>
-                    <button type="button" class="btn btn-fab btn-fab-mini">
+                    <button id="playlistButton" type="button" class="btn btn-fab btn-fab-mini">
                         <i class="material-icons">playlist_play</i>
                     </button>
-
                   </ul>
                 </div><!--/.nav-collapse -->
               </div>
@@ -169,85 +163,86 @@
     </div>
     <!-- /#wrapper -->
 
-
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
     <script src="js/jquery.tmpl.min.js"></script>
     <script src="js/jquery.tmplPlus.min.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
    
+
+
     <!-- SONGS TEMPLATE -->
     <script id="songTemplate" type="text/x-jquery-tmpl">
         <div class="list-group-item">
             <div class="row-action-primary">
-              <img class="img-circle" src=${album.images[2].url}>
+              <img class="img-circle" src=${album.images[1].url}>
             </div>
             <div class="row-content">
-              <div class="action-secondary">
-                
-                <button type="button" class="btn btn-fab btn-fab-mini">
-                    <i class="material-icons">play_circle_filled</i>
-                    <a id="link" href=${preview_url}></a>
+              <div class="action-secondary">                
+                <button id="button" type="button" class="btn btn-fab btn-fab-mini" 
+                data-url=${preview_url} 
+                data-image=${album.images[1].url}
+                data-song-name=${name}
+                data-album-name=${album.name}
+                onclick="playSong('${preview_url}','${album.images[1].url}','${name}','${album.name}');">
+                    <i class="material-icons">play_arrow</i>
                 </button>
     
-                <button type="button" class="btn btn-fab btn-fab-mini">
-                    <i class="material-icons">info</i>
+                <button type="button" id="button" class="btn btn-fab btn-fab-mini" >
+                    <i class="material-icons">star_border</i>
                 </button>
 
               </div>
-              <h4 class="list-group-item-heading">${name}</h4>
+              <h4 class="list-group-item-heading"><b>${name}</b></h4>
 
-              <p class="list-group-item-text">Album: ${album.name}</p>
+              <p class="list-group-item-text">${album.name}</p>
             </div>
 
           <div class="list-group-separator"></div> 
                          
         </div>
     </script>
-
     <!-- ALBUM TEMPLATE -->
     <script id="albumTemplate" type="text/x-jquery-tmpl">
-        <div id="cardAlbum" class="col-md-2">
+        <div id="cardAlbum" class="col-md-2 col-xs-4 col-sd-3">
             <div class="card">
                 <div class="card-image">
                     <img id="imgAlbum" class="img-responsive" src=${images[1].url}>
-                    <span class="card-title">${name}</span>
+                    <span id="nameAlbum" class="card-title">${name}</span>
                 </div>
                 
                 <div class="card-content">
-                    <button type="button" class="btn btn-fab btn-fab-mini" data-type="button">
-                        <i class="material-icons">play_circle_filled</i>
+                    <button type="buttonAlbum" class="btn btn-fab btn-fab-mini" data-type="button">
+                        <i class="material-icons">play_arrow</i>
                     </button>
                 </div>
                 
                 <div class="card-action">
-                    <a href="#" target="new_blank">${album_type}</a>
+                    <a href="#" target="new_blank">Type: ${album_type}</a>
                 </div>
             </div>
         </div>
     </script>
-
     <!-- ARTISTS TEMPLATE -->
     <script id="artistTemplate" type="text/x-jquery-tmpl">
         <div class="list-group-item">
             <div class="row-action-primary">
-              <img class="img-circle" src=${images[1].url}>
+              <img class="img-circle" src=${images[0].url}>
             </div>
             <div class="row-content">
               <div class="action-secondary">
                 
-                <button type="button" class="btn btn-fab btn-fab-mini">
-                    <i class="material-icons">play_circle_filled</i>
+                <button type="button" id="button" class="btn btn-fab btn-fab-mini">
+                    <i class="material-icons">play_arrow</i>
                 </button>
     
-                <button type="button" class="btn btn-fab btn-fab-mini">
-                    <i class="material-icons">info</i>
+                <button type="button" id="button" class="btn btn-fab btn-fab-mini">
+                    <i class="material-icons">info_outline</i>
                 </button>
 
               </div>
-              <h4 class="list-group-item-heading">${name}</h4>
+              <h4 class="list-group-item-heading"><b>${name}</b></h4>
 
               <p class="list-group-item-text">Popularity: ${popularity}</p>
             </div>
@@ -257,16 +252,15 @@
         </div>
     </script>
 
+
+
     <!-- Personalized Javascript -->
     <script type="text/javascript" src="js/buttonsController.js"></script>
     <script type="text/javascript" src="js/spotify-web-api-js.js"></script>
     <script type="text/javascript" src="js/petitionController.js"></script>
-
     <!-- Material Design JS -->
     <script src="js/material.min.js"></script>
     <script src="js/ripples.min.js"></script>
-
-
     <!-- Inicialization material design -->
     <script type="text/javascript">
         $.material.init();

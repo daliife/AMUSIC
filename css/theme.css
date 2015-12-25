@@ -18,13 +18,14 @@ h1,h3{
 #linkBrand{
 	text-align: center;
 	padding-top: 15px;
+	padding-bottom: 150px;
 }
 
 .test{
 	display: none;
 }
 
-.img-circle {
+.img-circle{
     border-radius: 50%;
 }
 
@@ -39,5 +40,73 @@ h1,h3{
 #menu-toggle{
 	outline: none;
 	float: left;
+	margin: 30px;
 
 }
+
+#logoImage{
+	display: inline;
+	height: 150px;
+	width: 150px;
+}
+
+h4{
+	color: white;
+	display: inline;
+	text-align: center;
+}
+
+body{
+	background-color: white;
+}
+
+.well{
+	border-radius: 20px;
+}
+
+#iconAlbum{
+	padding:15px 0px 0px 5px;
+}
+
+#nameAlbum{
+	vertical-align: middle;
+}
+
+#button{
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+#playButton{
+	margin: 15px;
+}
+
+#searchButton, #playButton, #playlistButton, #button{
+	outline: none;
+}
+
+#imagePlayingSong{
+	padding: 0px;
+	margin: 5px;
+	margin-right: 20px;
+    border-radius: 50%;
+}
+
+#miniPlayer{
+	background: rgba(0, 0, 0, 0.8);
+}
+
+#buttonAlbum{
+	position: absolute;
+	top: 50%;
+	padding-top: 50px;
+}
+
+
+
+
+
+
+
+.mdl-button .material-icons{ vertical-align: middle; }
+
