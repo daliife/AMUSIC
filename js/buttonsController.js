@@ -1,9 +1,5 @@
 // (function buttonsController(){
     var song = document.createElement('audio');
-    var isPlaying = false;
-
-
-
 
     function checkSubmit() {        
         if ( document.getElementById("addon2").value == "" ){
@@ -15,8 +11,8 @@
         }
     }
 
-    function changeIconPlay(isPlaying){
-        if(isPlaying){
+    function changeIconPlay(play_flag){
+        if(play_flag){
             document.getElementById("iconPlayPause").innerHTML = "pause";
         }else{
             document.getElementById("iconPlayPause").innerHTML = "play_arrow";
@@ -30,19 +26,11 @@
         document.getElementById("namePlayingSong").innerHTML = nameSong;
         document.getElementById("albumPlayingSong").innerHTML = nameAlbum;
 
-        //TODO: CHANGE THIS FUNCTION, ITS CANCER WHAT IS DOING!!!   
-        if(!isPlaying){
-            song = new Audio(url);
-            song.play();
-            isPlaying = true;
-            changeIconPlay(isPlaying);
-        }else{
-            song.pause();
-            song = new Audio(url);
-            song.play();
-            isPlaying = true;
-            changeIconPlay(isPlaying);
-        }
+        song.pause();
+        song = new Audio(url);
+        changeIconPlay(false);
+        song.play();
+        changeIconPlay(true);
         
     }
 
