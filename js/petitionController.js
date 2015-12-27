@@ -39,7 +39,6 @@ function getArtists(petitionName, numArtists){
 		$("#artistsList").empty();
 
 		spotifyApi.searchArtists(petitionName, {limit: numArtists}).then(function(data) {    
-		    console.log(data);
 		    for (var i = 0; i < numArtists; i++) {
 		    	 $("#artistTemplate").tmpl(data.artists.items[i]).appendTo("#artistsList");
 		    }   	
@@ -65,7 +64,7 @@ function similarArtists(artist){
 			for (var i=0 ; i<json.response.artists.length; i++){
 				console.log(json.response.artists[i].name +"   "+ json.response.artists[i].id );
 			}
-			//console.log(json.items[0]);
+			// console.log(json.items[0]);
 		}
 	})
 }

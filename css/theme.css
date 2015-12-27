@@ -4,96 +4,73 @@ h1,h3{
 	color: black;
 	font-weight: normal;
 }
-
 .glyphicon{
 	margin: 15px 25px 15px 0px;
 }
-
 .badge{
 	margin-left: 35px;
 	text-align: center;
 	display: none;
 }
-
 #linkBrand{
 	text-align: center;
 	padding-top: 15px;
 	padding-bottom: 150px;
 }
-
-.test{
-	display: none;
-}
-
 .img-circle{
     border-radius: 50%;
 }
-
 #cardAlbum{
 	padding: 15px;
 }
-
 #imgAlbum{
 	width:100%;
 }
-
 #menu-toggle{
 	outline: none;
 	float: left;
 	margin: 30px;
 
 }
-
 #logoImage{
 	display: inline;
 	height: 150px;
 	width: 150px;
 }
-
-h4{
-	color: white;
-	display: inline;
-	text-align: center;
-}
-
 body{
 	background-color: white;
 }
-
 .well{
 	border-radius: 20px;
 }
-
 #iconAlbum{
 	padding:15px 0px 0px 5px;
 }
-
 #nameAlbum{
 	vertical-align: middle;
 }
-
 #button{
 	margin-right: 10px;
 	margin-left: 10px;
 }
-
 #playButton{
 	margin: 15px;
 }
-
 #searchButton, #playButton, #playlistButton, #button{
 	outline: none;
 }
-
 #imagePlayingSong{
 	padding: 0px;
 	margin: 5px;
 	margin-right: 20px;
     border-radius: 50%;
 }
-
 #miniPlayer{
-	background: rgba(0, 0, 0, 0.8);
+	background-color: rgba(0, 0, 0, 0.8);
+	z-index: 999;
+}
+#songs, #albums, #artists{
+	display: none;
 }
 
 #buttonAlbum{
@@ -102,11 +79,70 @@ body{
 	padding-top: 50px;
 }
 
+#recomendations{
+	display: none;
+}
+
+#snackbar-container{
+	position: fixed;
+	float: left;
+/*	z-index: 999;*/
+	left: 20px;
+	bottom: 70px;
+
+}
+
+#snackButton{
+	display: none;
+}
+
+body {
+  font-family: system, -apple-system,
+      ".SFNSDisplay-Regular", "Helvetica Neue", "Lucida Grande";
+}
 
 
 
+/*ANIMACIO FADEIN*/
+#wrapper{
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
-
-
+/*
 .mdl-button .material-icons{ vertical-align: middle; }
-
+*/
