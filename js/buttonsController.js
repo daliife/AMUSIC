@@ -21,7 +21,7 @@
         }
     }
 
-    function playSong(url,urlImage,nameSong,nameAlbum){
+    function playSong(url,urlImage,nameSong,nameAlbum,id,nameArtist){
 
         document.getElementById("imagePlayingSong").src = urlImage;
         document.getElementById("namePlayingSong").innerHTML = nameSong;
@@ -32,6 +32,8 @@
         song = new Audio(url);
         song.play();
         changeIconPlay(true);
+
+        addItemSongsPlayed(id,nameArtist,nameSong,nameAlbum,1);
         
     }
 

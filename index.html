@@ -210,6 +210,7 @@
     <script src="js/jquery.js"></script>
     <script src="js/jquery.tmpl.min.js"></script>
     <script src="js/jquery.tmplPlus.min.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
    
@@ -227,11 +228,11 @@
                 data-image=${album.images[1].url}
                 data-song-name=${name}
                 data-album-name=${album.name}
-                onclick="playSong('${preview_url}','${album.images[1].url}','${name}','${album.name}');">
+                onclick="playSong('${preview_url}','${album.images[1].url}','${name}','${album.name}','${id}','${artists[0].name}');">
                     <i class="material-icons">play_arrow</i>
                 </button>
     
-                <button type="button" id="button" class="btn btn-fab btn-fab-mini" >
+                <button type="button" id="button" class="btn btn-fab btn-fab-mini" onclick="addItemPlaylist('${name}','${artists[0].name}','${album.name}','${album.images[1].url}');">
                     <i class="material-icons">star_border</i>
                 </button>
 
@@ -297,8 +298,12 @@
 
     <!-- Personalized Javascript -->
     <script type="text/javascript" src="js/buttonsController.js"></script>
+    <script type="text/javascript" src="js/database.js"></script>
     <script type="text/javascript" src="js/spotify-web-api-js.js"></script>
     <script type="text/javascript" src="js/petitionController.js"></script>
+
+    
+
     <!-- Material Design JS -->
     <script src="js/material.min.js"></script>
     <script src="js/ripples.min.js"></script>
