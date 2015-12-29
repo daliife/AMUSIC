@@ -19,20 +19,20 @@ if (window.openDatabase) {
 
 function updatePlayList(transaction, results) {
     //initialise the listitems variable
-    var listitems = "";
+    //var listitems = "";
     //get the car list holder ul
-    var listholder = document.getElementById("playlist");
+    //var listholder = document.getElementById("playlist");
 
     //clear cars list ul
-    listholder.innerHTML = "";
+    //listholder.innerHTML = "";
 
     var i;
     //Iterate through the results
     for (i = 0; i < results.rows.length; i++) {
         //Get the current row
         var row = results.rows.item(i);
-
-        listholder.innerHTML += "<li>" + row.song + " - " + row.artist + " (<a href='javascript:void(0);' onclick='deleteItem(" + row.id + ");'>Delete this item</a>)";
+        
+        //listholder.innerHTML += "<li>" + row.song + " - " + row.artist + " (<a href='javascript:void(0);' onclick='deleteItem(" + row.id + ");'>Delete this item</a>)";
     }
 
 }
@@ -53,18 +53,18 @@ function outputPlaylist() {
 
 //function to add the car to the database
 
-function addItem() {
+function addItemPlaylist(song,artist,album,image) {
     //check to ensure the mydb object has been created
     if (mydb) {
         //get the values of the make and model text inputs
-        var song = document.getElementById("song").value;
-        var artist= document.getElementById("artist").value;
+        //var song = document.getElementById("song").value;
+        //var artist= document.getElementById("artist").value;
 
         //Test to ensure that the user has entered both a make and model
         if (song !== "" && artist !== "") {
             //Insert the user entered details into the cars table, note the use of the ? placeholder, these will replaced by the data passed in as an array as the second parameter
             mydb.transaction(function (t) {
-                t.executeSql("INSERT INTO playlist(song, artist) VALUES (?, ?)", [song, artist]);
+                t.executeSql("INSERT INTO playlist(song, artist,album,image) VALUES (?, ?,?, ?)", [song, artist,album,image]);
                 outputPlaylist();
             });
         } else {
@@ -78,7 +78,7 @@ function addItem() {
 
 //function to remove a car from the database, passed the row id as it's only parameter
 
-function deleteItem(id) {
+function deleteItemPlayList(id) {
     //check to ensure the mydb object has been created
     if (mydb) {
         //Get all the cars from the database with a select statement, set outputCarList as the callback function for the executeSql command
@@ -90,4 +90,51 @@ function deleteItem(id) {
     }
 }
 
-outputPlaylist();
+
+
+function addItemSongsPlayed(id,title,artist,album,timesplayed) {
+    
+    //check to ensure the mydb object has been created
+    if (mydb) {
+        //get the values of the make and model text inputs
+        //var song = document.getElementById("song").value;
+        //var artist= document.getElementById("artist").value;
+
+        //Test to ensure that the user has entered both a make and model
+        
+        //Insert the user entered details into the cars table, note the use of the ? placeholder, these will replaced by the data passed in as an array as the second parameter
+        mydb.transaction(function (t) {
+            /*
+            t.executeSql("SELECT ID FROM songsplayed WHERE ID =?",[id],[]);
+            if (results.length >= 1){
+                t.executeSql("UPDATE songsplayed SET counter = counter+1 WHERE ID =?",[id]);
+            }else{
+                t.executeSql("INSERT INTO songsplayed(id,title,artist,album,counter) VALUES (?,?,?,?,?)", [id,title,artist,album,timesplayed]);
+                outputPlaylist();
+            }
+
+            */
+            var counter="";
+            t.executeSql("SELECT ID FROM songsplayed WHERE ID =?",[id],
+            function(transaction, results){
+            counter=results.rows.length;
+        
+            
+
+            if (counter >= 1){
+                console.log("HAS ESCOLTAT LA CANCO 2 O MES COPS");
+                t.executeSql("UPDATE songsplayed SET counter = counter+1 WHERE ID =?",[id]);
+            }else{
+                  t.executeSql("INSERT INTO songsplayed(id,title,artist,album,counter) VALUES (?,?,?,?,?)", [id,title,artist,album,timesplayed]);
+                
+            }
+         });
+        });
+       
+    } else {
+        alert("db not found, your browser does not support web sql!");
+    }
+}
+
+
+ //outputPlaylist();

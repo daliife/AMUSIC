@@ -16,21 +16,24 @@
             document.getElementById("iconPlayPause").innerHTML = "pause";
         }else{
             document.getElementById("iconPlayPause").innerHTML = "play_arrow";
+            document.getElementById("snackButton").setAttribute('data-content',"Paused");
+            $("#snackButton").snackbar("toggle");
         }
     }
 
-
-    function playSong(url,urlImage,nameSong,nameAlbum){
+    function playSong(url,urlImage,nameSong,nameAlbum,id,nameArtist){
 
         document.getElementById("imagePlayingSong").src = urlImage;
         document.getElementById("namePlayingSong").innerHTML = nameSong;
         document.getElementById("albumPlayingSong").innerHTML = nameAlbum;
-
+        document.getElementById("snackButton").setAttribute('data-content',"Playing "+ nameSong + ", from " + nameAlbum);
+        $("#snackButton").snackbar("toggle");
         song.pause();
         song = new Audio(url);
-        changeIconPlay(false);
         song.play();
         changeIconPlay(true);
+
+        addItemSongsPlayed(id,nameArtist,nameSong,nameAlbum,1);
         
     }
 
@@ -53,12 +56,15 @@
                 console.log("LINK SEARCH CLICKED!");
                 $("#formSearch").show();
                 $("#resultsSearch").show();
+                $("#recomendations").hide(); 
                 break;
 
             case "linkRecomendations":
                 console.log("LINK RECOMENDATIONS CLICKED!");
                 $("#formSearch").hide();
                 $("#resultsSearch").hide();
+                // refreshRecomendations();
+                $("#recomendations").show();                
                 break;
 
             case "linkSongs":

@@ -29,7 +29,7 @@
 
     <div id="wrapper" class="toggled">
 
-        <!-- Sidebar -->
+        <!-- BARRA LATERAL -->
         <div id="sidebar-wrapper">
 
             <ul class="sidebar-nav">
@@ -74,31 +74,29 @@
             </ul>
 
         </div>
-        <!-- /#sidebar-wrapper -->
+        <!-- /#FI BARRA LATERAL -->
 
-        <!-- Page Content -->
+        <!-- CONTIGUT PÀGINA -->
         <div id="page-content-wrapper" >
 
-            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
-                <i class="material-icons toggled">reorder</i>
-            </a> 
+            <button class="btn btn-default" id="menu-toggle">
+                <i class="material-icons">reorder</i>
+            </button> 
 
 
             <!-- BUSCADOR PRINCIPAL -->
-            <div id="formSearch" class="row well container-fluid primary">
-                <div class="col-md-3 col-xs-3 col-sm-4">                           
-                </div>
+            <header id="formSearch" class="row jumbotron container-fluid primary">
 
-                <div class="col-md-6 col-xs-6 col-sm-4">
+                <div class="col-md-6 col-xs-12 col-sm-8 col-xs-offset-0 col-sm-offset-2 col-md-offset-3">
 
-                    <h1>A-MUSIC</h1> 
+                    <h1><b>A</b>music</h1> 
                     
                     <div class="form-group label-floating">
                       <label class="control-label" for="addon2">Write a song, artist or album...</label>
                       <div class="input-group">
                             <input type="text" id="addon2" class="form-control">
                             <span class="input-group-btn">
-                              <button type="button" id="searchButton" class="btn btn-fab btn-fab-mini" data-toggle="tooltip" data-placement="top" title="" data-original-title="Push to search a Song, Artist or Album!">
+                              <button type="button" id="searchButton" class="btn btn-fab btn-fab-mini" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
                                 <i class="material-icons">search</i>
                               </button>
                             </span>
@@ -106,30 +104,73 @@
                     </div> 
                 </div>
 
-                <!-- MOSTRAR/OCULTAR MINIREPRODUCTOR -->
-                <div class="col-md-3 col-xs-3 col-sm-4">                           
-                </div>
-            </div>
+            </header>
 
             <!--RESULTATS DE CERCA -->
             <div id="resultsSearch">
 
                 <!-- SONGS LIST -->
-                <h3 class="well">Songs</h3> 
+                <h3 class=" jumbotron">Songs</h3> 
                 <div id="songsList" class="list-group container-fluid"></div>
                 <!-- ALBUMS LIST -->
-                <h3 class="well">Albums</h3> 
+                <h3 class="jumbotron">Albums</h3> 
                 <div id="albumsList" class="container-fluid"></div>                     
                 <!-- ARTISTS LIST -->
-                <h3 class="well">Artists</h3>
+                <h3 class="jumbotron">Artists</h3>
                 <div id="artistsList" class="list-group container-fluid"></div>  
             
             </div>
 
+            <!-- RECOMANACIONS -->
+            <div id="recomendations">
+
+                <!-- SONGS LISåT RECOMENDATIONS-->
+                <h3 class="jumbotron">Songs</h3> 
+                <div id="songsListRecomendation" class="list-group container-fluid"></div>
+                <!-- ALBUMS LIST RECOMENDATIONS-->
+                <h3 class="jumbotron">Albums</h3> 
+                <div id="albumsListRecomendation" class="container-fluid"></div>                     
+                <!-- ARTISTS LIST RECOMENDATIONS-->
+                <h3 class="jumbotron">Artists</h3>
+                <div id="artistsListRecomendation" class="list-group container-fluid"></div>  
+            
+            </div>
+
+
+            <div id="songs">
+
+                <h3 class="jumbotron">Songs</h3> 
+                <div id="songsListRecomendation" class="list-group container-fluid"></div>
+            
+            </div>
+
+            <div id="albums">
+
+                <h3 class="jumbotron">Albums</h3> 
+                <div id="albumsListRecomendation" class="container-fluid"></div>                                
+            </div>
+
+
+            <div id="artists">
+                     
+                <h3 class="jumbotron">Artists</h3>
+                <div id="artistsListRecomendation" class="list-group container-fluid"></div>  
+            
+            </div>
+
+
+
+
+
+            <div id="snackbar-container">
+                <button id="snackButton" type="button" data-style="toast" data-content="Information about the actual song" data-toggle="toast" data-timeout="2000">Toast button</button>
+            </div>
+
             <!-- MINIREPRODUCTOR -->
-            <nav id="miniPlayer" class="navbar navbar-fixed-bottom">
+            <nav id="miniPlayer" class="navbar navbar-fixed-bottom" role="navigation">
 
               <div class="container">
+
                 <div class="navbar-header">
                   <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
@@ -137,17 +178,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                   </button>
-                  <img id="imagePlayingSong" src="http://media.creativebloq.futurecdn.net/sites/creativebloq.com/files/images/2014/02/coldplay1.jpg" class="navbar-brand"></img>
-                  <p id="namePlayingSong" class="navbar-brand" >Song name</p>
+                  <img id="imagePlayingSong" src="images/logo_provisional.png" class="navbar-brand"></img>
+                  <p id="namePlayingSong" class="navbar-brand" > </p>
                 </div>
+
                 <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">
                     <li>
-                        <a href="#" id="albumPlayingSong">Album</a>
+                        <a href="#" id="albumPlayingSong"> </a>
                     </li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
-                    <button id="playButton" type="button" class="btn btn-fab btn-fab-mini">
+                    <button id="playButton" type="button" class="btn btn-fab btn-fab-mini">                 
                         <i id="iconPlayPause" class="material-icons">play_arrow</i>
                     </button>
                     <button id="playlistButton" type="button" class="btn btn-fab btn-fab-mini">
@@ -157,8 +199,9 @@
                 </div><!--/.nav-collapse -->
               </div>
             </nav>    
+      
         </div>
-        <!-- /#page-content-wrapper -->
+        <!-- /#FI CONTINGUT PÀGINA -->
 
     </div>
     <!-- /#wrapper -->
@@ -167,10 +210,10 @@
     <script src="js/jquery.js"></script>
     <script src="js/jquery.tmpl.min.js"></script>
     <script src="js/jquery.tmplPlus.min.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
    
-
 
     <!-- SONGS TEMPLATE -->
     <script id="songTemplate" type="text/x-jquery-tmpl">
@@ -185,11 +228,11 @@
                 data-image=${album.images[1].url}
                 data-song-name=${name}
                 data-album-name=${album.name}
-                onclick="playSong('${preview_url}','${album.images[1].url}','${name}','${album.name}');">
+                onclick="playSong('${preview_url}','${album.images[1].url}','${name}','${album.name}','${id}','${artists[0].name}');">
                     <i class="material-icons">play_arrow</i>
                 </button>
     
-                <button type="button" id="button" class="btn btn-fab btn-fab-mini" >
+                <button type="button" id="button" class="btn btn-fab btn-fab-mini" onclick="addItemPlaylist('${name}','${artists[0].name}','${album.name}','${album.images[1].url}');">
                     <i class="material-icons">star_border</i>
                 </button>
 
@@ -228,7 +271,7 @@
     <script id="artistTemplate" type="text/x-jquery-tmpl">
         <div class="list-group-item">
             <div class="row-action-primary">
-              <img class="img-circle" src=${images[0].url}>
+              <img class="img-circle" src="${images[1].url}"></img>
             </div>
             <div class="row-content">
               <div class="action-secondary">
@@ -253,14 +296,19 @@
     </script>
 
 
-
     <!-- Personalized Javascript -->
     <script type="text/javascript" src="js/buttonsController.js"></script>
+    <script type="text/javascript" src="js/database.js"></script>
     <script type="text/javascript" src="js/spotify-web-api-js.js"></script>
     <script type="text/javascript" src="js/petitionController.js"></script>
+
+    
+
     <!-- Material Design JS -->
     <script src="js/material.min.js"></script>
     <script src="js/ripples.min.js"></script>
+    <!-- others -->
+    <script src="js/snackbar.js"></script>
     <!-- Inicialization material design -->
     <script type="text/javascript">
         $.material.init();
