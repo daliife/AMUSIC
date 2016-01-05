@@ -117,6 +117,23 @@ function show(){
     }
 }
 
+        case "playButton":
+            console.log("LINK PLAYPAUSE CLICKED!");
+            if(song.paused){
+                changeIconPlay(true);
+                song.play();
+            }else{
+                changeIconPlay(false);
+                song.pause();
+            }                
+            break;
+
+        default:
+            alert("info: ID ERROR");
+            break;
+    }
+}
+
 $(document).ready(function(){
 
 	outputPlaylist();
@@ -152,23 +169,4 @@ $(document).ready(function(){
 
     $("#playButton").click(show); 
 
-<<<<<<< HEAD
 });
-=======
-    });
-
-        funcion setVolume(volum){ // entre 0 i 1!
-        song.volume=volum;
-    }
-
-    function getSongTime(){
-        console.log("Current song time: "+ song.currentTime);
-        //return song.currentTime;
-    }
-
-    function setSongTime(percentatge){ //Rep un percentatge, de 0 a 1!
-        newTime = percentatge*song.duration;
-        song.currentTime = newTime;
-        console.log("New time setted for the song: " + song.currentTime);
-    }
->>>>>>> no message
