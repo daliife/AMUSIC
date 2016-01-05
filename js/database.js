@@ -5,8 +5,9 @@ if (window.openDatabase) {
     var mydb = openDatabase("AMusic", "0.1", "A Database of Songs I Like", 1024 * 1024);
     
     mydb.transaction(function (t) {
-    	//RESETEJAR LA DATABASE -->t.executeSql("DROP TABLE playlist");
-        t.executeSql("CREATE TABLE IF NOT EXISTS playlist (id INTEGER PRIMARY KEY ASC, song TEXT, artist TEXT, album TEXT, image TEXT, preview_song TEXT)");
+    	//RESETEJAR LA DATABASE -->
+    	t.executeSql("DROP TABLE playlist");
+        t.executeSql("CREATE TABLE IF NOT EXISTS playlist (id INTEGER PRIMARY KEY ASC, song TEXT, artist TEXT, album TEXT, image TEXT, preview_song TEXT, popularity INT)");
         t.executeSql("CREATE TABLE IF NOT EXISTS songsplayed (id TEXT PRIMARY KEY , title TEXT, artist TEXT, album TEXT, counter INT)");
     });
 
@@ -15,7 +16,6 @@ if (window.openDatabase) {
 }
 
 function updateFavoritedSongs(transaction, results) {
-
     var i;
     for (i = 0; i < results.rows.length; i++) {
         var row = results.rows.item(i);
@@ -25,7 +25,6 @@ function updateFavoritedSongs(transaction, results) {
 }
 
 function updateFavoritedAlbums(transaction, results) {
-
     var i;
     for (i = 0; i < results.rows.length; i++) {
         var row = results.rows.item(i);
@@ -35,43 +34,41 @@ function updateFavoritedAlbums(transaction, results) {
 }
 
 function updateFavoritedArtists(transaction, results) {
-
     var i;
     for (i = 0; i < results.rows.length; i++) {
         var row = results.rows.item(i);
+        console.log(row);
         $("#artistsFavorited").tmpl(row).appendTo("#artistsListFavorited");
     }
 
 }
 
 function outputPlaylist() {
-
     if (mydb) {
         mydb.transaction(function (t) {
             t.executeSql("SELECT * FROM playlist", [], updateFavoritedSongs);
             t.executeSql("SELECT DISTINCT album album,image FROM playlist", [], updateFavoritedAlbums);
-            t.executeSql("SELECT DISTINCT artist artist,image FROM playlist", [], updateFavoritedArtists);
+            t.executeSql("SELECT DISTINCT artist artist,image,popularity FROM playlist", [], updateFavoritedArtists);
         });
     } else {
         alert("ERROR: db not found, your browser does not support web sql!");
     }
-
 }
 
-function addItemPlaylist(song, artist, album, image, preview, id) {
-
+function addItemPlaylist(song, artist, album, image, preview, id, popularity) {
    	$("#songsListFavorited").empty();
    	$("#albumsListFavorited").empty();
    	$("#artistsListFavorited").empty();
 
 	id.children[0].innerHTML = "star";
+	console.log("ENTRO");
 
     if (mydb) {
-        //Test to ensure that the user has entered both a make and model
+        
         if (song !== "" && artist !== "") {
-            //Insert the user entered details into the cars table, note the use of the ? placeholder, these will replaced by the data passed in as an array as the second parameter
+        
             mydb.transaction(function (t) {
-                t.executeSql("INSERT INTO playlist(song,artist,album,image,preview_song) VALUES (?, ?, ?, ?, ?)", [song, artist,album,image, preview]);
+                t.executeSql("INSERT INTO playlist(song,artist,album,image,preview_song,popularity) VALUES (?, ?, ?, ?, ?, ?)", [song, artist,album,image, preview, popularity]);
                 outputPlaylist();
             });
         } else {
@@ -84,20 +81,16 @@ function addItemPlaylist(song, artist, album, image, preview, id) {
 }
 
 function deleteItemPlayList(id) {
-    //check to ensure the mydb object has been created
     if (mydb) {
-        //Get all the cars from the database with a select statement, set outputCarList as the callback function for the executeSql command
         mydb.transaction(function (t) {
             t.executeSql("DELETE FROM playlist WHERE id=?", [id], outputPlaylist);
         });
     } else {
         alert("db not found, your browser does not support web sql!");
     }
-
 }
 
-function addItemSongsPlayed(id,title,artist,album,timesplayed) {
-    
+function addItemSongsPlayed(id, title, artist, album, timesplayed) { 
     if (mydb) {
 
         mydb.transaction(function (t) {

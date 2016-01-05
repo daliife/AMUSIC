@@ -1,9 +1,20 @@
-
+// buttonscontroler.js
 //Object song for the recieved audio
 var song = document.createElement('audio');
 
-function checkSubmit() {
 
+function getSongTime(){
+    console.log("Current song time: "+ song.currentTime);
+    //return song.currentTime;
+}
+
+function setSongTime(percentatge){ //Rep un percentatge, de 0 a 1!
+    newTime = percentatge*song.duration;
+    song.currentTime = newTime;
+    console.log("New time setted for the song: " + song.currentTime);
+}
+
+function checkSubmit() {
     if ( document.getElementById("addon2").value == "" ){
         console.log("info: CANNOT SEARCH");
         return 0;
@@ -14,7 +25,6 @@ function checkSubmit() {
 }
 
 function changeIconPlay(play_flag){
-
     if(play_flag){
         document.getElementById("iconPlayPause").innerHTML = "pause";
     }else{
@@ -25,7 +35,6 @@ function changeIconPlay(play_flag){
 }
 
 function playSong(url, urlImage, nameSong, nameAlbum, id, nameArtist){
-
     document.getElementById("imagePlayingSong").src = urlImage;
     document.getElementById("namePlayingSong").innerHTML = nameSong;
     document.getElementById("albumPlayingSong").innerHTML = nameAlbum;
@@ -42,7 +51,6 @@ function playSong(url, urlImage, nameSong, nameAlbum, id, nameArtist){
 }
 
 function show(){
-
     switch(this.id) {
 
         case "menu-toggle":
@@ -61,7 +69,7 @@ function show(){
             $("#recomendations").hide();
             $("#songs").hide();
             $("#albums").hide();
-            $("#artists").hide(); 
+            $("#artists").hide();
             break;
 
         case "linkRecomendations":
@@ -101,7 +109,6 @@ function show(){
             break;
 
         case "playButton":
-            console.log("LINK PLAYPAUSE CLICKED!");
             if(song.paused){
                 changeIconPlay(true);
                 song.play();
@@ -131,7 +138,6 @@ $(document).ready(function(){
     $(document).click(function (e){
         var container = $("#wrapper");
         if (!container.is(e.target) && container.has(e.target).length === 0 && event.target.id!=="menu-toggle"){
-            console.log("UNTOGGLE CLICKED!");
             container.addClass("toggled"); 
         }
     });
