@@ -117,23 +117,6 @@ function show(){
     }
 }
 
-        case "playButton":
-            console.log("LINK PLAYPAUSE CLICKED!");
-            if(song.paused){
-                changeIconPlay(true);
-                song.play();
-            }else{
-                changeIconPlay(false);
-                song.pause();
-            }                
-            break;
-
-        default:
-            alert("info: ID ERROR");
-            break;
-    }
-}
-
 $(document).ready(function(){
 
 	outputPlaylist();
