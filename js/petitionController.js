@@ -1,18 +1,19 @@
+
 var spotifyApi = new SpotifyWebApi();
 var numSongs = 6;
 var numArtists = 6;
 var numAlbums = 6;
 // var clientID = "6b97605d73b54ff0910c0d10b0410513";
 // var clientIDSecret = "9b56e5b116594e71bcaabbc4fc2341f8";
-// spotifyApi.setAccessToken(clientID);
+// spotifyApi.setAccessToken(clientIDSecret);
 
 
 function getSongs(petitionName, numSongs){	
 		
 		$("#songsList").empty();
 
-		spotifyApi.searchTracks(petitionName, {limit: numSongs}).then(function(data) {    
-		  console.log(data);
+		spotifyApi.searchTracks(petitionName, {limit: numSongs}).then(function(data) {   
+			
 		    for (var i = 0; i < numSongs; i++) {
 		    	 $("#songTemplate").tmpl(data.tracks.items[i]).appendTo("#songsList");
 		    }   	
@@ -26,14 +27,14 @@ function getAlbums(petitionName, numAlbums){
 		
 		$("#albumsList").empty();
 
-		spotifyApi.searchAlbums(petitionName, {limit: numAlbums}).then(function(data) {    
-		    
+		spotifyApi.searchAlbums(petitionName, {limit: numAlbums}).then(function(data) {        
 		    for (var i = 0; i < numAlbums; i++) {
 		    	 $("#albumTemplate").tmpl(data.albums.items[i]).appendTo("#albumsList");
 		    }   	
 		  }, function(err) {
 		    console.error(err);
 		  });
+
 }
 
 function getArtists(petitionName, numArtists){	
@@ -51,9 +52,11 @@ function getArtists(petitionName, numArtists){
 }
 
 function searchAction(petitionName){
+
 		getSongs(petitionName, numSongs);
 		getAlbums(petitionName,numAlbums);
 		getArtists(petitionName,numArtists);
+
 }
 
 function similarArtists(artist){
@@ -69,6 +72,7 @@ function similarArtists(artist){
 			// console.log(json.items[0]);
 		}
 	})
+
 }
 
 

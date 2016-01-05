@@ -1,7 +1,9 @@
-// (function buttonsController(){
+	
+	//Object song for the recieved audio
     var song = document.createElement('audio');
 
-    function checkSubmit() {        
+    function checkSubmit() {
+
         if ( document.getElementById("addon2").value == "" ){
             console.log("info: CANNOT SEARCH");
             return 0;
@@ -12,6 +14,7 @@
     }
 
     function changeIconPlay(play_flag){
+   
         if(play_flag){
             document.getElementById("iconPlayPause").innerHTML = "pause";
         }else{
@@ -21,74 +24,80 @@
         }
     }
 
-    function playSong(url,urlImage,nameSong,nameAlbum,id,nameArtist){
+    function playSong(url, urlImage, nameSong, nameAlbum, id, nameArtist){
 
         document.getElementById("imagePlayingSong").src = urlImage;
         document.getElementById("namePlayingSong").innerHTML = nameSong;
         document.getElementById("albumPlayingSong").innerHTML = nameAlbum;
+        
         document.getElementById("snackButton").setAttribute('data-content',"Playing "+ nameSong + ", from " + nameAlbum);
         $("#snackButton").snackbar("toggle");
+        
         song.pause();
         song = new Audio(url);
         song.play();
         changeIconPlay(true);
-
-        addItemSongsPlayed(id,nameArtist,nameSong,nameAlbum,1);
         
+        addItemSongsPlayed(id,nameArtist,nameSong,nameAlbum,1);       
     }
 
     function show(){
-        console.log("ID: " + this.id);
 
         switch(this.id) {
+
             case "menu-toggle":
-                console.log("LINK TOGGLE MENU CLICKED!");
                 $("#wrapper").toggleClass("toggled");
                 break;
 
             case "searchButton":
                 if (checkSubmit()){
-                    console.log("PETICIO: " + document.getElementById("addon2").value);
+                    console.log("PETICIO --> " + document.getElementById("addon2").value);
                     searchAction(document.getElementById("addon2").value);
                 };
 
             case "linkSearch":
-                console.log("LINK SEARCH CLICKED!");
                 $("#formSearch").show();
                 $("#resultsSearch").show();
-                $("#recomendations").hide(); 
+                $("#recomendations").hide();
+                $("#songs").hide();
+                $("#albums").hide();
+                $("#artists").hide(); 
                 break;
 
             case "linkRecomendations":
-                console.log("LINK RECOMENDATIONS CLICKED!");
                 $("#formSearch").hide();
                 $("#resultsSearch").hide();
-                // refreshRecomendations();
-                $("#recomendations").show();                
+                $("#recomendations").show();
+                $("#songs").hide();
+                $("#albums").hide();
+                $("#artists").hide();              
                 break;
 
             case "linkSongs":
-                console.log("LINK SONGS CLICKED!");
+                $("#formSearch").hide();
+                $("#resultsSearch").hide();
+                $("#recomendations").hide();
+                $("#songs").show();
+                $("#albums").hide();
+                $("#artists").hide(); 
                 break;
 
             case "linkAlbums":
-                console.log("LINK ALBUMS CLICKED!");
+                $("#formSearch").hide();
+                $("#resultsSearch").hide();
+                $("#recomendations").hide();
+                $("#songs").hide();
+                $("#albums").show();
+                $("#artists").hide(); 
                 break;
 
             case "linkArtists":
-                console.log("LINK ARTISTS CLICKED!");
-                break;
-
-            case "linkSettings":
-                console.log("LINK SETTINGS CLICKED!");
-                break;
-
-            case "linkLogout":
-                console.log("LINK LOGOUT CLICKED!");
-                break;
-
-            case "linkSettings":
-                console.log("LINK SETTINGS CLICKED!");
+                $("#formSearch").hide();
+                $("#resultsSearch").hide();
+                $("#recomendations").hide();
+                $("#songs").hide();
+                $("#albums").hide();
+                $("#artists").show(); 
                 break;
 
             case "playButton":
@@ -108,8 +117,10 @@
         }
     }
 
-
     $(document).ready(function(){
+
+    	outputPlaylist();
+
         $('.form-control').keyup(function (e) {
             if (e.keyCode === 13 && checkSubmit()) {
                console.log("PETICIO: " + document.getElementById("addon2").value);
@@ -139,12 +150,6 @@
 
         $("#linkArtists").click(show);
 
-        $("#linkSettings").click(show);
-
-        $("#linkLogout").click(show); 
-
         $("#playButton").click(show); 
 
     });
-
-// }());
