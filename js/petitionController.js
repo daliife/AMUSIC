@@ -7,7 +7,6 @@ var numAlbums = 6;
 // var clientIDSecret = "9b56e5b116594e71bcaabbc4fc2341f8";
 // spotifyApi.setAccessToken(clientIDSecret);
 
-
 function getSongs(petitionName, numSongs){	
 		
 		$("#songsList").empty();
@@ -15,7 +14,7 @@ function getSongs(petitionName, numSongs){
 		spotifyApi.searchTracks(petitionName, {limit: numSongs}).then(function(data) {    
 		    for (var i = 0; i < numSongs; i++) {
 		    	 $("#songTemplate").tmpl(data.tracks.items[i]).appendTo("#songsList");
-		    }   	
+		    } 	
 		  }, function(err) {
 		    console.error(err);
 		  });

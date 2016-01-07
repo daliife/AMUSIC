@@ -48,17 +48,17 @@
 	                </li>
 	                <li>
 	                    <a href="javascript:void(0)" id="linkSongs">
-	                        <span class="glyphicon glyphicon-music" aria-hidden="true"></span>Songs<span class="badge">0</span>
+	                        <span class="glyphicon glyphicon-music" aria-hidden="true"></span>Songs<span id="songBadge" class="badge">0</span>
 	                    </a>
 	                </li>
 	                <li>
 	                    <a href="javascript:void(0)" id="linkAlbums">
-	                        <span class="glyphicon glyphicon-book" aria-hidden="true"></span>Albums<span class="badge">0
+	                        <span class="glyphicon glyphicon-book" aria-hidden="true"></span>Albums<span id="albumBadge"class="badge">0
 	                    </a>
 	                </li>
 	                <li>
 	                    <a href="javascript:void(0)" id="linkArtists">
-	                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Artists<span class="badge">0</span>
+	                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Artists<span id="artistBadge"class="badge">0</span>
 	                    </a>
 	                </li>
 	            </ul>
@@ -114,7 +114,7 @@
 	            <!-- RECOMANACIONS -->
 	            <div id="recomendations">
 
-	                <!-- SONGS LISåT RECOMENDATIONS-->
+	                <!-- SONGS LIST RECOMENDATIONS-->
 	                <h3 class="jumbotron">Songs</h3> 
 	                <div id="songsListRecomendation" class="list-group container-fluid"></div>
 	                <!-- ALBUMS LIST RECOMENDATIONS-->
@@ -211,7 +211,7 @@
 						    <i class="material-icons">play_arrow</i>
 						</button>
 
-						<button id="button" type="button" class="btn btn-fab btn-fab-mini" onclick="addItemPlaylist('${name}','${artists[0].name}','${album.name}','${album.images[1].url}','${preview_url}', this ,'${popularity}');">
+						<button id="button" type="button" class="btn btn-fab btn-fab-mini" onclick="addItemPlaylist('${name}','${artists[0].name}','${album.name}','${album.images[1].url}','${preview_url}', this ,'${popularity}','${artists[0].href}');">
 						    <i class="material-icons">star_border</i>
 						</button>
 					
@@ -284,12 +284,12 @@
 
 					<div class="action-secondary">
 
-						<button id="button" type="button" class="btn btn-fab btn-fab-mini" data-url=${preview_song} data-image=${image} data-song-name=${song} data-album-name=${album}
-						onclick="playSong('${preview_song}','${image}','${name}','${album}','${id}','${artist}');">
+						<button id="button" type="button" class="btn btn-fab btn-fab-mini" data-url='${preview_song}' data-image='${image}' data-song-name='${song}' data-album-name='${album}'
+						onclick="playSong('${preview_song}','${image}','${song}','${album}','${id}','${artist}');">
 						    <i class="material-icons">play_arrow</i>
 						</button>
 
-						<button id="button" type="button" class="btn btn-fab btn-fab-mini" onclick="alert('REMOVED');">
+						<button id="button" type="button" class="btn btn-fab btn-fab-mini" onclick="deleteItemPlayList(${id});">
 						    <i class="material-icons">delete</i>
 						</button>
 					
@@ -329,7 +329,7 @@
 	    <script id="artistsFavorited" type="text/x-jquery-tmpl">
 	        <div class="list-group-item">
 	            <div class="row-action-primary">
-	              <img class="img-circle" src="${image}"></img>
+	              <img class="img-circle" src="${url_Artist}"></img>
 	            </div>
 	            <div class="row-content">
 	              <div class="action-secondary">
@@ -338,7 +338,7 @@
 	                    <i class="material-icons">play_arrow</i>
 	                </button>
 	    
-	                <button type="button" id="button" class="btn btn-fab btn-fab-mini" onclick="alert('REMOVED');">
+	                <button type="button" id="button" class="btn btn-fab btn-fab-mini" onclick="deleteArtistPlayList('${artist}');">
 	                    <i class="material-icons">delete</i>
 	                </button>
 

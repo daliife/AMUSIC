@@ -4,71 +4,91 @@ h1,h3{
 	color: black;
 	font-weight: normal;
 }
+
 .glyphicon{
 	margin: 15px 25px 15px 0px;
 }
+
 .badge{
-	margin-left: 35px;
-	text-align: center;
-	display: none;
+	float: right;
+	margin-right: 35px;
+	margin-top: 15px;
+	vertical-align: center;
+	display: normal;
 }
+
 #linkBrand{
 	text-align: center;
 	padding-top: 15px;
 	padding-bottom: 150px;
 }
+
 .img-circle{
     border-radius: 50%;
 }
+
 #cardAlbum{
 	padding: 15px;
 }
+
 #imgAlbum{
 	width:100%;
 }
+
 #menu-toggle{
 	outline: none;
 	float: left;
-	margin: 30px;
-
+	position: absolute;
+	margin: 50px;
 }
+
 #logoImage{
 	display: inline;
 	height: 150px;
 	width: 150px;
 }
+
 body{
 	background-color: white;
 }
+
 .well{
 	border-radius: 20px;
 }
+
 #iconAlbum{
 	padding:15px 0px 0px 5px;
 }
+
 #nameAlbum{
 	vertical-align: middle;
 }
+
 #button{
 	margin-right: 10px;
 	margin-left: 10px;
 }
+
 #playButton{
 	margin: 15px;
 }
+
 #searchButton, #playButton, #playlistButton, #button{
 	outline: none;
 }
+
 #imagePlayingSong{
 	padding: 0px;
 	margin: 5px;
 	margin-right: 20px;
     border-radius: 50%;
 }
+
 #miniPlayer{
 	background-color: rgba(0, 0, 0, 0.8);
 	z-index: 999;
 }
+
 #songs, #albums, #artists{
 	display: none;
 }
@@ -86,10 +106,8 @@ body{
 #snackbar-container{
 	position: fixed;
 	float: left;
-/*	z-index: 999;*/
 	left: 20px;
 	bottom: 70px;
-
 }
 
 #snackButton{
@@ -101,6 +119,11 @@ body {
       ".SFNSDisplay-Regular", "Helvetica Neue", "Lucida Grande";
 }
 
+.jumbotron{
+/*	border-radius: 15px;*/
+	margin-left: 0px;
+	margin-right: 0px;
+}
 
 
 /*ANIMACIO FADEIN*/

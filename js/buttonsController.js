@@ -1,7 +1,7 @@
 // buttonscontroler.js
+
 //Object song for the recieved audio
 var song = document.createElement('audio');
-
 
 function getSongTime(){
     console.log("Current song time: "+ song.currentTime);
@@ -16,10 +16,8 @@ function setSongTime(percentatge){ //Rep un percentatge, de 0 a 1!
 
 function checkSubmit() {
     if ( document.getElementById("addon2").value == "" ){
-        console.log("info: CANNOT SEARCH");
         return 0;
     }else{
-        console.log("info: CAN SEARCH");
         return 1;
     }
 }

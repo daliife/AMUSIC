@@ -1,4 +1,3 @@
-
 //Test for browser compatibility
 if (window.openDatabase) {
     //Create the database the parameters are 1. the database name 2.version number 3. a description 4. the size of the database (in bytes) 1024 x 1024 = 1MB
@@ -7,7 +6,8 @@ if (window.openDatabase) {
     mydb.transaction(function (t) {
     	//RESETEJAR LA DATABASE -->
     	t.executeSql("DROP TABLE playlist");
-        t.executeSql("CREATE TABLE IF NOT EXISTS playlist (id INTEGER PRIMARY KEY ASC, song TEXT, artist TEXT, album TEXT, image TEXT, preview_song TEXT, popularity INT)");
+    	t.executeSql("DROP TABLE songsplayed");
+        t.executeSql("CREATE TABLE IF NOT EXISTS playlist (id INTEGER PRIMARY KEY ASC, song TEXT, artist TEXT, album TEXT, image TEXT, preview_song TEXT, popularity INT, url_Artist TEXT)");
         t.executeSql("CREATE TABLE IF NOT EXISTS songsplayed (id TEXT PRIMARY KEY , title TEXT, artist TEXT, album TEXT, counter INT)");
     });
 
@@ -15,8 +15,10 @@ if (window.openDatabase) {
     alert("WebSQL is not supported by your browser!");
 }
 
+
 function updateFavoritedSongs(transaction, results) {
     var i;
+   	$("#songsListFavorited").empty();
     for (i = 0; i < results.rows.length; i++) {
         var row = results.rows.item(i);
         $("#songsFavorited").tmpl(row).appendTo("#songsListFavorited");
@@ -26,6 +28,7 @@ function updateFavoritedSongs(transaction, results) {
 
 function updateFavoritedAlbums(transaction, results) {
     var i;
+	$("#albumsListFavorited").empty();
     for (i = 0; i < results.rows.length; i++) {
         var row = results.rows.item(i);
         $("#albumsFavorited").tmpl(row).appendTo("#albumsListFavorited");
@@ -35,9 +38,10 @@ function updateFavoritedAlbums(transaction, results) {
 
 function updateFavoritedArtists(transaction, results) {
     var i;
+    $("#artistsListFavorited").empty();
     for (i = 0; i < results.rows.length; i++) {
         var row = results.rows.item(i);
-        console.log(row);
+        
         $("#artistsFavorited").tmpl(row).appendTo("#artistsListFavorited");
     }
 
@@ -48,29 +52,43 @@ function outputPlaylist() {
         mydb.transaction(function (t) {
             t.executeSql("SELECT * FROM playlist", [], updateFavoritedSongs);
             t.executeSql("SELECT DISTINCT album album,image FROM playlist", [], updateFavoritedAlbums);
-            t.executeSql("SELECT DISTINCT artist artist,image,popularity FROM playlist", [], updateFavoritedArtists);
+            t.executeSql("SELECT DISTINCT artist artist,image,popularity,url_Artist FROM playlist GROUP BY artist", [], updateFavoritedArtists);
         });
     } else {
         alert("ERROR: db not found, your browser does not support web sql!");
     }
+
 }
 
-function addItemPlaylist(song, artist, album, image, preview, id, popularity) {
+function addItemPlaylist(song, artist, album, image, preview, id, popularity, url) {
+   	
+   	var urlArtist;
+	$.ajax({
+		url: url,
+		type:"GET",
+		dataType:"json",
+		success:function(json){	
+			urlArtist = json.images[0].url;
+		}
+	})	
+
    	$("#songsListFavorited").empty();
    	$("#albumsListFavorited").empty();
-   	$("#artistsListFavorited").empty();
-
+    $("#artistsListFavorited").empty();
 	id.children[0].innerHTML = "star";
-	console.log("ENTRO");
+
+
 
     if (mydb) {
         
         if (song !== "" && artist !== "") {
         
             mydb.transaction(function (t) {
-                t.executeSql("INSERT INTO playlist(song,artist,album,image,preview_song,popularity) VALUES (?, ?, ?, ?, ?, ?)", [song, artist,album,image, preview, popularity]);
+                t.executeSql("INSERT INTO playlist(song,artist,album,image,preview_song,popularity,url_Artist) VALUES (?, ?, ?, ?, ?, ?, ?)", [song, artist, album, image, preview, popularity, urlArtist]);
                 outputPlaylist();
             });
+        	updateBadges();
+
         } else {
             alert("You must enter a make and model!");
         }
@@ -85,9 +103,27 @@ function deleteItemPlayList(id) {
         mydb.transaction(function (t) {
             t.executeSql("DELETE FROM playlist WHERE id=?", [id], outputPlaylist);
         });
+        
+       	updateBadges();     
+
     } else {
         alert("db not found, your browser does not support web sql!");
     }
+
+}
+
+function deleteArtistPlayList(artist) {
+    if (mydb) {
+        mydb.transaction(function (t) {
+            t.executeSql("DELETE FROM playlist WHERE artist=?", [artist], outputPlaylist);
+        });
+
+        updateBadges();
+
+    } else {
+        alert("db not found, your browser does not support web sql!");
+    }
+
 }
 
 function addItemSongsPlayed(id, title, artist, album, timesplayed) { 
@@ -111,9 +147,38 @@ function addItemSongsPlayed(id, title, artist, album, timesplayed) {
          });
         
         });
-       
+
     } else {
         alert("db not found, your browser does not support web sql!");
     }
 
 }
+
+function updateBadgeSongs(transaction, results) {
+	document.getElementById("songBadge").innerHTML = results.rows[0].numSongs;
+}
+
+function updateBadgeAlbums(transaction, results) {
+	document.getElementById("albumBadge").innerHTML = results.rows[0].numAlbums;
+}
+
+function updateBadgeArtists(transaction, results) {
+	document.getElementById("artistBadge").innerHTML = results.rows[0].numArtists;;
+}
+
+function updateBadges() {
+    if (mydb) {
+        mydb.transaction(function (t) {
+            t.executeSql("SELECT COUNT(DISTINCT song) AS numSongs FROM playlist", [], updateBadgeSongs);
+           	t.executeSql("SELECT COUNT(DISTINCT album) AS numAlbums FROM playlist", [], updateBadgeAlbums);
+         	t.executeSql("SELECT COUNT(DISTINCT artist) AS numArtists FROM playlist", [], updateBadgeArtists);
+        });
+    } else {
+        alert("ERROR: db not found, your browser does not support web sql!");
+    }
+}
+
+
+
+
+
