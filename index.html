@@ -8,9 +8,11 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <meta name="description" content="AMUSIC: Music recommender">
 	    <meta name="author" content="Jordi Roig, David Curto and David Gimeno">
-
+	   
 	    <title>Amusic</title>
 	    
+
+	    <link href="css/nouislider.min.css" rel="stylesheet">
 	    <!-- Bootstrap Core CSS -->
 	    <link href="css/bootstrap.min.css" rel="stylesheet">
 	    <link href="css/bootstrap-material-design.min.css" rel="stylesheet">
@@ -38,27 +40,27 @@
 	                </li>
 	                <li>
 	                    <a href="javascript:void(0)" id="linkSearch">
-	                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search
+	                        <span id="sidebarLogo" class="glyphicon glyphicon-search" aria-hidden="true"></span>Search
 	                    </a>
 	                </li>                
 	                <li>
 	                    <a href="javascript:void(0)" id="linkRecomendations">
-	                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>Recomendations
+	                        <span id="sidebarLogo" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>Recomendations
 	                    </a>
 	                </li>
 	                <li>
 	                    <a href="javascript:void(0)" id="linkSongs">
-	                        <span class="glyphicon glyphicon-music" aria-hidden="true"></span>Songs<span id="songBadge" class="badge">0</span>
+	                        <span id="sidebarLogo" class="glyphicon glyphicon-music" aria-hidden="true"></span>Songs<span id="songBadge" class="badge">0</span>
 	                    </a>
 	                </li>
 	                <li>
 	                    <a href="javascript:void(0)" id="linkAlbums">
-	                        <span class="glyphicon glyphicon-book" aria-hidden="true"></span>Albums<span id="albumBadge"class="badge">0
+	                        <span id="sidebarLogo" class="glyphicon glyphicon-book" aria-hidden="true"></span>Albums<span id="albumBadge" class="badge">0
 	                    </a>
 	                </li>
 	                <li>
 	                    <a href="javascript:void(0)" id="linkArtists">
-	                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Artists<span id="artistBadge"class="badge">0</span>
+	                        <span id="sidebarLogo" class="glyphicon glyphicon-user" aria-hidden="true"></span>Artists<span id="artistBadge"class="badge">0</span>
 	                    </a>
 	                </li>
 	            </ul>
@@ -75,7 +77,7 @@
 
 
 	            <!-- BUSCADOR PRINCIPAL -->
-	            <header id="formSearch" class="row jumbotron container-fluid primary">
+	            <header id="formSearch" class="jumbotron container-fluid primary">
 
 	                <div class="col-md-6 col-xs-12 col-sm-8 col-xs-offset-0 col-sm-offset-2 col-md-offset-3">
 
@@ -86,7 +88,7 @@
 	                      <div class="input-group">
 	                            <input type="text" id="addon2" class="form-control">
 	                            <span class="input-group-btn">
-	                              <button type="button" id="searchButton" class="btn btn-fab btn-fab-mini" data-container="body" data-toggle="popover" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+	                              <button type="button" id="searchButton" class="btn" data-toggle="tooltip" data-placement="top" title="Click to search" data-original-title="tooltip">
 	                                <i class="material-icons">search</i>
 	                              </button>
 	                            </span>
@@ -154,8 +156,53 @@
 	                <button id="snackButton" type="button" data-style="toast" data-content="Information about the actual song" data-toggle="toast" data-timeout="2000">Toast button</button>
 	            </div>
 
-	            <!-- MINIREPRODUCTOR -->
-	            <nav id="miniPlayer" class="navbar navbar-fixed-bottom" role="navigation">
+	            <!-- MINIREPRODUCTOR -->	
+	            <div class="navbar navbar-fixed-bottom">
+					
+					<div class="col-md-12 col-xs-12 col-sm-8">
+						<input type="range" min="0" max="50" value="25" />
+					</div>
+
+					<div class="col-md-4 col-xs-12 col-sm-8">
+						<div class="col-md-6 col-xs-12 col-sm-8">
+							<img id="imagePlayingSong" src="images/logo_provisional.png" class="navbar-brand"></img>
+						</div>
+
+						<div class="col-md-6 col-xs-12 col-sm-8">
+							<p id="namePlayingSong" class="navbar-brand" >Hello </p>
+							<p id="albumPlayingSong">Aloha</a>
+						</div>
+					</div>
+
+
+					<div class="col-md-4 col-xs-12 col-sm-8">
+
+	                    <button id="playlistButton" type="button" class="btn ">
+	                       <i class="material-icons">fast_rewind</i>
+	                    </button>
+
+						<button id="playButton" type="button" class="btn ">          
+	                        <i id="iconPlayPause" class="material-icons">play_arrow</i>
+	                    </button>
+	                
+	                    <button id="playlistButton" type="button" class="btn ">
+	                       <i class="material-icons">fast_forward</i>
+	                    </button>
+	                
+	                    <button id="playlistButton" type="button" class="btn ">
+	                        <i class="material-icons">playlist_play</i>
+	                    </button>
+					</div>
+
+
+					<div class="col-md-4 col-xs-12 col-sm-8">
+						<input type="range" min="0" max="50" value="25" />	
+					</div>
+
+				</div>
+
+
+<!-- 	            <nav id="miniPlayer" class="navbar navbar-fixed-bottom" role="navigation">
 
 	              <div class="container">
 
@@ -184,9 +231,9 @@
 	                        <i class="material-icons">playlist_play</i>
 	                    </button>
 	                  </ul>
-	                </div><!--/.nav-collapse -->
+	                </div><!/.nav-collapse
 	              </div>
-	            </nav>    
+	            </nav> -->     
 	      
 	        </div>
 	        <!-- /#FI CONTINGUT PÀGINA -->
@@ -206,7 +253,7 @@
 
 					<div class="action-secondary">
 
-						<button id="button" type="button" class="btn btn-fab btn-fab-mini" data-url=${preview_url} data-image=${album.images[1].url} data-song-name=${name} data album-name=${album.name}
+						<button id="button" type="button" class="btn btn-fab btn-fab-mini" 
 						onclick="playSong('${preview_url}','${album.images[1].url}','${name}','${album.name}','${id}','${artists[0].name}');">
 						    <i class="material-icons">play_arrow</i>
 						</button>
@@ -232,17 +279,13 @@
 	            <div class="card">
 	                <div class="card-image">
 	                    <img id="imgAlbum" class="img-responsive" src=${images[1].url}>
-	                    <span id="nameAlbum" class="card-title">${name}</span>
+	                    <span id="nameAlbum" class="card-title"><i class="material-icons">album</i></span>${name}</span>
 	                </div>
 	                
 	                <div class="card-content">
 	                    <button type="buttonAlbum" class="btn btn-fab btn-fab-mini" data-type="button">
 	                        <i class="material-icons">play_arrow</i>
 	                    </button>
-	                </div>
-	                
-	                <div class="card-action">
-	                    <a href="#" target="new_blank">Type: ${album_type}</a>
 	                </div>
 	            </div>
 	        </div>
@@ -290,6 +333,10 @@
 						</button>
 
 						<button id="button" type="button" class="btn btn-fab btn-fab-mini" onclick="deleteItemPlayList(${id});">
+						    <i class="material-icons">info</i>
+						</button>
+						
+						<button id="button" type="button" class="btn btn-fab btn-fab-mini" onclick="deleteItemPlayList(${id});">
 						    <i class="material-icons">delete</i>
 						</button>
 					
@@ -329,13 +376,13 @@
 	    <script id="artistsFavorited" type="text/x-jquery-tmpl">
 	        <div class="list-group-item">
 	            <div class="row-action-primary">
-	              <img class="img-circle" src="${url_Artist}"></img>
+	              <img class="img-circle" src="${urlArtist}"></img>
 	            </div>
 	            <div class="row-content">
 	              <div class="action-secondary">
 	                
 	                <button type="button" id="button" class="btn btn-fab btn-fab-mini">
-	                    <i class="material-icons">play_arrow</i>
+	                    <i class="material-icons">info</i>
 	                </button>
 	    
 	                <button type="button" id="button" class="btn btn-fab btn-fab-mini" onclick="deleteArtistPlayList('${artist}');">
@@ -353,6 +400,8 @@
 	        </div>
 	    </script>
 
+
+
 	    <!-- jQuery -->
 	    <script src="js/jquery.js"></script>
 	    <script src="js/jquery.tmpl.min.js"></script>
@@ -364,12 +413,13 @@
 	    <script type="text/javascript" src="js/buttonsController.js"></script>
 	    <script type="text/javascript" src="js/spotify-web-api-js.js"></script>
 	    <script type="text/javascript" src="js/petitionController.js"></script>
-	  
+	    <script type="text/javascript" src="js/player.js"></script>
 	    <!-- Material Design JS -->
 	    <script src="js/material.min.js"></script>
 	    <script src="js/ripples.min.js"></script>
 	    <!-- Others -->
 	    <script src="js/snackbar.js"></script>
+	    <script src="js/nouislider.min.js"></script>
 	    <!-- Inicialization material design -->
 	    <script type="text/javascript">
 	        $.material.init();

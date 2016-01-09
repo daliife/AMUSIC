@@ -1,19 +1,5 @@
 // buttonscontroler.js
 
-//Object song for the recieved audio
-var song = document.createElement('audio');
-
-function getSongTime(){
-    console.log("Current song time: "+ song.currentTime);
-    //return song.currentTime;
-}
-
-function setSongTime(percentatge){ //Rep un percentatge, de 0 a 1!
-    newTime = percentatge*song.duration;
-    song.currentTime = newTime;
-    console.log("New time setted for the song: " + song.currentTime);
-}
-
 function checkSubmit() {
     if ( document.getElementById("addon2").value == "" ){
         return 0;
@@ -124,7 +110,10 @@ function show(){
 
 $(document).ready(function(){
 
-	outputPlaylist();
+    $('[data-toggle="tooltip"]').tooltip();
+
+    outputPlaylist();
+
 
     $('.form-control').keyup(function (e) {
         if (e.keyCode === 13 && checkSubmit()) {
@@ -157,3 +146,25 @@ $(document).ready(function(){
     $("#playButton").click(show); 
 
 });
+
+// var myMedia = document.createElement('audio');
+// $('#player').append(myMedia);
+// myMedia.id = "myMedia";
+// playAudio('http://iviewsource.com/exercises/audioslider/audio/ViewSource', 0);
+
+// function playAudio(fileName, myVolume) {
+//     var mediaExt = (myMedia.canPlayType('audio/mp3')) ? '.mp3' 
+//     : (myMedia.canPlayType('audio/ogg')) ? '.ogg' 
+//     : '';
+//     if (mediaExt) {
+//     myMedia.src = fileName + mediaExt;
+//     myMedia.setAttribute('loop', 'loop');
+//     setVolume(myVolume);
+//     myMedia.play();
+//   }
+// }
+
+// function setVolume(myVolume) {
+//     var myMedia = document.getElementById('myMedia');
+//     myMedia.volume = myVolume;
+// }
