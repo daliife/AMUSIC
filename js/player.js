@@ -47,8 +47,7 @@ song.onended = function() {
 	// $( "#miniplayer" ).show( 'slide', { direction: "up" } , 500);
 	$( "#miniplayer" ).hide('slow');
     console.log("The song has ended");
-	isPlaying = false;
-    
+	isPlaying = false;   
 };
 
 

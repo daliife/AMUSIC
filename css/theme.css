@@ -1,5 +1,11 @@
 /*theme.css*/
-h1,h3{
+h1{
+	text-align: center;
+	color: white;
+	font-weight: normal;
+
+}
+h3{
 	text-align: center;
 	color: black;
 	font-weight: normal;
@@ -17,8 +23,6 @@ h1,h3{
 	float: right;
 	margin-right: 35px;
 	margin-top: 15px;
-	vertical-align: center;
-	display: normal;
 }
 
 #linkBrand{
@@ -77,11 +81,10 @@ h1,h3{
 	padding: 0px;
 	margin: 5px;
 	margin-right: 20px;
-/*    border-radius: 50%;*/
 }
 
 #miniPlayer{
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(0, 0, 0, 0.85);
 	z-index: 999;
 }
 
@@ -105,6 +108,10 @@ h1,h3{
 	float: left;
 	left: 20px;
 	bottom: 100px;
+
+}
+#whiteColor{
+	color: white;
 }
 
 body {
@@ -112,9 +119,16 @@ body {
 	background-color: white;
 }
 
-.jumbotron{
-	margin-left: 0px;
-	margin-right: 0px;
+#formSearch{
+	background-color: rgba(0,0,0,0.85)!important;
+}
+
+.control-label:target{
+	color: white;
+}
+
+#addon2{
+	color: white;
 }
 
 #nameAlbum{
@@ -127,8 +141,8 @@ body {
 }
 
 .navbar{
-	background-color: rgba(255,255,255,0.85)!important;
-	opacity: 80%!important;
+	background-color: rgba(0,0,0,0.85)!important;
+
 }
 
 #namePlayingSong{
@@ -186,10 +200,10 @@ body {
 
 /*ANIMACIO FADEIN*/
 #wrapper{
-    animation: fadein 2s;
-    -moz-animation: fadein 2s; /* Firefox */
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-    -o-animation: fadein 2s; /* Opera */
+    animation: fadein 1s;
+    -moz-animation: fadein 1s; /* Firefox */
+    -webkit-animation: fadein 1s; /* Safari and Chrome */
+    -o-animation: fadein 1s; /* Opera */
 }
 @keyframes fadein {
     from {

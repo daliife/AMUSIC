@@ -168,8 +168,6 @@ function updateBadges() {
 }
 
 
-
-
 //TODO: TO CURE FROM CANCER
 function isEmpty(){
     var counter = 0;

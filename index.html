@@ -10,25 +10,26 @@
 	    <meta name="author" content="Jordi Roig, David Curto and David Gimeno">
 	   
 	    <title>Amusic</title>
-	    
-	    <link href="css/nouislider.min.css" rel="stylesheet">
+
+		<!-- reset css -->
+	    <link href="css/reset.css" rel="stylesheet">
 	    <!-- Bootstrap Core CSS -->
 	    <link href="css/bootstrap.min.css" rel="stylesheet">
 	    <link href="css/bootstrap-material-design.min.css" rel="stylesheet">
 	    <link href="css/ripples.min.css" rel="stylesheet">
 	    <!-- Google Fonts -->
-	    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+	    <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
 	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	     <!-- Custom CSS -->
+	     <!-- Template CSS -->
 	    <link href="css/simple-sidebar.css" rel="stylesheet">
+		<!-- snackbar css -->
+	    <link href="css/snackbar.css" rel="stylesheet">
 	    <!-- Personalized CSS -->
 	    <link href="css/theme.css" rel="stylesheet">
-
-
-		<!-- ADDED -->
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<!-- Jquery UI-->
+		<link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
+		<!-- hover -->
+		<link href="css/hover-min.css" rel="stylesheet" media="all">
 
 	</head>
 
@@ -55,7 +56,7 @@
 	                </li>
 	                <li>
 	                    <a href="javascript:void(0)" id="linkSongs">
-	                        <span id="sidebarLogo" class="glyphicon glyphicon-music" aria-hidden="true"></span>Songs<span id="songBadge" class="badge">0</span>
+	                        <span id="sidebarLogo" class="glyphicon glyphicon-music" aria-hidden="true"></span>Songs<span id="songBadge" class="badge text-center">0</span>
 	                    </a>
 	                </li>
 	                <li>
@@ -83,16 +84,16 @@
 	            </header>
 				
 				<!-- BUSCADOR PRINCIPAL -->
-				<nav class="row">
+				<nav id="buscador"class="row">
 				    <div class="navbar navbar-static-top">
 				    	
-				    	<div class="col-md-4 col-xs-12 col-sm-8 text-center">
-				            <button class="btn btn-default" id="menu-toggle">
-				                <i class="material-icons">reorder</i>
+				    	<div class="col-md-3 col-xs-12 col-sm-12">
+				            <button class="btn" id="menu-toggle" data-toggle="tooltip" data-placement="right" title="Click to open the menu" data-original-title="tooltip">
+				                <i id="whiteColor" class="material-icons">reorder</i>
 				            </button> 				    	
 				        </div>
 
-				    	<div class="col-md-4 col-xs-12 col-sm-8">
+				    	<div class="col-md-6 col-xs-8 col-sm-10 col-xs-offset-2 col-sm-offset-1">
 			                
 			                <div class="form-group label-floating">
 			                  <label class="control-label" for="addon2">Write a song, artist or album...</label>
@@ -100,12 +101,15 @@
 			                        <input type="text" id="addon2" class="form-control">
 			                        <span class="input-group-btn">
 			                          <button type="button" id="searchButton" class="btn" data-toggle="tooltip" data-placement="top" title="Click to search" data-original-title="tooltip">
-			                            <i class="material-icons">search</i>
+			                            <i id="whiteColor" class="material-icons">search</i>
 			                          </button>
 			                        </span>
 			                  </div>
 			                </div> 
 	                	</div>
+
+						<div class="col-md-3 col-xs-8 col-sm-10 col-xs-offset-2 col-sm-offset-1"></div>
+
 				    </div>
 				</nav>
 
@@ -176,7 +180,7 @@
 	            </div>
 
 
-                <button id="snackButton" type="button" data-style="toast" data-content="Information about the actual song" data-toggle="toast" data-timeout="2000"> </button>
+                <button id="snackButton" type="button" data-style="toast" data-content="Information about the actual song" data-toggle="toast" data-timeout="2000">Toast </button>
 
 
 	            <!-- MINIREPRODUCTOR -->	
@@ -398,7 +402,10 @@
 
 
 	    <!-- jQuery -->
-<!-- 	    // <script src="js/jquery.js"></script> -->
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<!--<script src="js/jquery.js"></script> -->
+		<!-- jQuery Templates-->
 	    <script src="js/jquery.tmpl.min.js"></script>
 	    <script src="js/jquery.tmplPlus.min.js"></script>
 	    <!-- Bootstrap Core JavaScript -->

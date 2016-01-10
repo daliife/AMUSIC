@@ -8,7 +8,7 @@ function updatePlayerInfo(urlImage, nameSong, nameAlbum){
 }
 
 function callSnackBar(nameSong, nameAlbum){
-     document.getElementById("snackButton").setAttribute('data-content',"Playing "+ nameSong + ", from " + nameAlbum);
+    document.getElementById("snackButton").setAttribute('data-content',"Playing "+ nameSong + ", from " + nameAlbum);
     $("#snackButton").snackbar("toggle");  
   
 }
@@ -69,7 +69,7 @@ function show(){
             break;
 
         case "linkRecomendations":
-            $("#formSearch").hide();
+            $("#formSearch").show();
             $("#resultsSearch").hide();
             $("#recomendations").show();
             $("#songs").hide();
@@ -79,7 +79,7 @@ function show(){
             break;
 
         case "linkSongs":
-            $("#formSearch").hide();
+            $("#formSearch").show();
             $("#resultsSearch").hide();
             $("#recomendations").hide();
             $("#songs").show();
@@ -88,7 +88,7 @@ function show(){
             break;
 
         case "linkAlbums":
-            $("#formSearch").hide();
+            $("#formSearch").show();
             $("#resultsSearch").hide();
             $("#recomendations").hide();
             $("#songs").hide();
@@ -97,7 +97,7 @@ function show(){
             break;
 
         case "linkArtists":
-            $("#formSearch").hide();
+            $("#formSearch").show();
             $("#resultsSearch").hide();
             $("#recomendations").hide();
             $("#songs").hide();
@@ -144,17 +144,16 @@ $(document).ready(function(){
 
     document.onscroll = function() {
         if( $(window).scrollTop() > $('header').height() ) {
-            $('nav > div.navbar').removeClass('navbar-static-top').addClass('navbar-fixed-top');
+            $('nav > div.navbar').removeClass('navbar-static-top').addClass('navbar-fixed-top');    
         }
         else {
             $('nav > div.navbar').removeClass('navbar-fixed-top').addClass('navbar-static-top');
         }
     };    
 
-
     $(document).click(function (e){
         var container = $("#wrapper");
-        if (!container.is(e.target) && container.has(e.target).length === 0 && event.target.id!=="menu-toggle"){
+        if (!container.is(e.target) && container.has(e.target).length === 0 && event.target.id!=="sidebar-wrapper"){
             container.addClass("toggled"); 
         }
     });
