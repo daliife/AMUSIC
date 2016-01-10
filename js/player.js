@@ -25,6 +25,7 @@ function addPlayer(url){
 // SECCIO VOLUM
 function setVolume(volum){
   song.volume=volum/100;
+  document.getElementById("volumeSlider").value = volum;
   getVolume();
 }
 function getVolume(){
@@ -42,9 +43,12 @@ function setTiming(percent){
 	};
 }
 song.onended = function() {
+	// TODO: CHECK IF THERE ARE MORE SONGS TO PLAY
+	// $( "#miniplayer" ).show( 'slide', { direction: "up" } , 500);
+	$( "#miniplayer" ).hide('slow');
     console.log("The song has ended");
-	$("#miniplayer").hide("slow");
 	isPlaying = false;
+    
 };
 
 

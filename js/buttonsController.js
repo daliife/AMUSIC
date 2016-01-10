@@ -15,9 +15,8 @@ function callSnackBar(nameSong, nameAlbum){
 
 function callMiniPlayerEffect(){
     if (!showingMiniplayer) {
-        console.log("entering...");
-        $("#miniplayer").show("slow");
-
+        // $("#miniplayer").slideDown(1000);
+        $( "#miniplayer" ).show( 'slide', { direction: "down" } , 500);
     };
 }
 
@@ -106,6 +105,14 @@ function show(){
             $("#artists").show(); 
             break;
 
+        case "volumeMin":
+            setVolume(0);
+            break;
+
+        case "volumeMax":
+            setVolume(100);
+            break;
+
         case "playButton":
             if(song.paused){
                 changeIconPlay(true);
@@ -134,6 +141,17 @@ $(document).ready(function(){
         }
       });
 
+
+    document.onscroll = function() {
+        if( $(window).scrollTop() > $('header').height() ) {
+            $('nav > div.navbar').removeClass('navbar-static-top').addClass('navbar-fixed-top');
+        }
+        else {
+            $('nav > div.navbar').removeClass('navbar-fixed-top').addClass('navbar-static-top');
+        }
+    };    
+
+
     $(document).click(function (e){
         var container = $("#wrapper");
         if (!container.is(e.target) && container.has(e.target).length === 0 && event.target.id!=="menu-toggle"){
@@ -155,6 +173,10 @@ $(document).ready(function(){
 
     $("#linkArtists").click(show);
 
-    $("#playButton").click(show); 
+    $("#playButton").click(show);
+
+    $("#volumeMin").click(show);    
+
+    $("#volumeMax").click(show); 
 
 });

@@ -66,9 +66,6 @@ function addItemPlaylist(song, artist, album, image, preview, id, popularity, pa
         urlArtist = data.images[0].url;
     }); 
 
-   	$("#songsListFavorited").empty();
-   	$("#albumsListFavorited").empty();
-    $("#artistsListFavorited").empty();
 	id.children[0].innerHTML = "star";
 
     if (mydb) {

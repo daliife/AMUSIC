@@ -76,45 +76,57 @@
 	        <!-- CONTIGUT PÀGINA -->
 	        <div id="page-content-wrapper" >
 
-	            <button class="btn btn-default" id="menu-toggle">
-	                <i class="material-icons">reorder</i>
-	            </button> 
-
-
-	            <!-- BUSCADOR PRINCIPAL -->
-	            <header id="formSearch" class="jumbotron container-fluid">
-
-	                <div class="col-md-6 col-xs-12 col-sm-8 col-xs-offset-0 col-sm-offset-2 col-md-offset-3">
-
+	            <header id="formSearch" class="container-fluid">
+	                <div class="col-md-12 col-xs-12 col-sm-12">
 	                    <h1><b>A</b>music</h1> 
-	                    
-	                    <div class="form-group label-floating">
-	                      <label class="control-label" for="addon2">Write a song, artist or album...</label>
-	                      <div class="input-group">
-	                            <input type="text" id="addon2" class="form-control">
-	                            <span class="input-group-btn">
-	                              <button type="button" id="searchButton" class="btn" data-toggle="tooltip" data-placement="top" title="Click to search" data-original-title="tooltip">
-	                                <i class="material-icons">search</i>
-	                              </button>
-	                            </span>
-	                      </div>
-	                    </div> 
 	                </div>
-
 	            </header>
+				
+				<!-- BUSCADOR PRINCIPAL -->
+				<nav class="row">
+				    <div class="navbar navbar-static-top">
+				    	
+				    	<div class="col-md-4 col-xs-12 col-sm-8 text-center">
+				            <button class="btn btn-default" id="menu-toggle">
+				                <i class="material-icons">reorder</i>
+				            </button> 				    	
+				        </div>
+
+				    	<div class="col-md-4 col-xs-12 col-sm-8">
+			                
+			                <div class="form-group label-floating">
+			                  <label class="control-label" for="addon2">Write a song, artist or album...</label>
+			                  <div class="input-group">
+			                        <input type="text" id="addon2" class="form-control">
+			                        <span class="input-group-btn">
+			                          <button type="button" id="searchButton" class="btn" data-toggle="tooltip" data-placement="top" title="Click to search" data-original-title="tooltip">
+			                            <i class="material-icons">search</i>
+			                          </button>
+			                        </span>
+			                  </div>
+			                </div> 
+	                	</div>
+				    </div>
+				</nav>
 
 	            <!--RESULTATS DE CERCA -->
 	            <div id="resultsSearch">
 
 	                <!-- SONGS LIST -->
-	                <h3 class="jumbotron">Songs</h3> 
-	                <div id="songsList" class="list-group container-fluid"></div>
+	                <h3 id="etiqueta">Songs</h3> 
+	                <div id="songsList" class="list-group container-fluid">
+	                	<p style="text-align:center;">SONGS EMPTY. Search something to fill it!</p>
+	                </div>
 	                <!-- ALBUMS LIST -->
-	                <h3 class="jumbotron">Albums</h3> 
-	                <div id="albumsList" class="container-fluid"></div>
+	                <h3 id="etiqueta">Albums</h3> 
+	                <div id="albumsList" class="list-group container-fluid">
+	                	<p style="text-align:center;">ALBUM EMPTY. Search something to fill it!</p>
+	                </div>
 	                <!-- ARTISTS LIST -->
-	                <h3 class="jumbotron">Artists</h3>
-	                <div id="artistsList" class="list-group container-fluid"></div>  
+	                <h3 id="etiqueta">Artists</h3>
+	                <div id="artistsList" class="list-group container-fluid">
+	                	<p style="text-align:center;">ARTISTS EMPTY. Search something to fill it!</p>
+	                </div>  
 	            
 	            </div>
 
@@ -122,13 +134,13 @@
 	            <div id="recomendations">
 
 	                <!-- SONGS LIST RECOMENDATIONS-->
-	                <h3 class="jumbotron">Songs</h3> 
+	                <h3 id="etiqueta">Songs</h3> 
 	                <div id="songsListRecomendation" class="list-group container-fluid"></div>
 	                <!-- ALBUMS LIST RECOMENDATIONS-->
-	                <h3 class="jumbotron">Albums</h3> 
+	                <h3 id="etiqueta">Albums</h3> 
 	                <div id="albumsListRecomendation" class="container-fluid"></div>
 	                <!-- ARTISTS LIST RECOMENDATIONS-->
-	                <h3 class="jumbotron">Artists</h3>
+	                <h3 id="etiqueta">Artists</h3>
 	                <div id="artistsListRecomendation" class="list-group container-fluid"></div>  
 	            
 	            </div>
@@ -136,53 +148,54 @@
 				<!-- CANÇONS FAVORITES -->
 	            <div id="songs">
 
-	                <h3 class="jumbotron">Favorited Songs</h3> 
-	                <div id="songsListFavorited" class="list-group container-fluid"></div>
+	                <h3 id="etiqueta">Favorited Songs</h3> 
+	                <div id="songsListFavorited" class="list-group container-fluid">
+	                	<p style="text-align:center;">FAVORITED SONGS IS EMPTY. Add songs to fill it!</p>
+	                </div>
 	            
 	            </div>
 
 				<!-- ALBUMS FAVORITS -->
 	            <div id="albums">
 
-	                <h3 class="jumbotron">Favorited Albums</h3> 
-	                <div id="albumsListFavorited" class="container-fluid"></div> 
+	                <h3 id="etiqueta">Favorited Albums</h3> 
+	                <div id="albumsListFavorited" class="container-fluid">
+	                	<p style="text-align:center;">FAVORITED ALBUMS IS EMPTY. Add songs to fill it!</p>
+	                </div> 
 
 	            </div>
 
 				<!-- ARTISTES FAVORITS -->
 	            <div id="artists">
 	                     
-	                <h3 class="jumbotron">Favorited Artists</h3>
-	                <div id="artistsListFavorited" class="list-group container-fluid"></div>  
+	                <h3 id="etiqueta">Favorited Artists</h3>
+	                <div id="artistsListFavorited" class="list-group container-fluid">
+	                	<p style="text-align:center;">FAVORITED ARTISTS IS EMPTY. Add songs to fill it!</p>
+	                </div>  
 	            
 	            </div>
 
 
-	                <button id="snackButton" type="button" data-style="toast" data-content="Information about the actual song" data-toggle="toast" data-timeout="2000"> </button>
+                <button id="snackButton" type="button" data-style="toast" data-content="Information about the actual song" data-toggle="toast" data-timeout="2000"> </button>
 
 
 	            <!-- MINIREPRODUCTOR -->	
 	            <div id="miniplayer" class="navbar navbar-fixed-bottom navbar-default">
 				
-					<div class="col-md-12 col-xs-12 col-sm-12">
-
+					<div id="lineTop" class="col-md-12 col-xs-12 col-sm-12">
 							<input class="bar" type="range" id="progress" value="0" onchange="setTiming(value);"/>
-								
 					</div>
 
 					<div class="col-md-4 col-xs-12 col-sm-8">
-						
 							<img id="imagePlayingSong" src="images/logo_provisional.png" class="navbar-brand img-responsive"></img>
-
-							<h4 id="namePlayingSong">Hello </h4>
-							<p id="albumPlayingSong">Aloha</a>
-
+							<h4 id="namePlayingSong"> </h4>
+							<p id="albumPlayingSong"> </a>
 					</div>
 
 
 					<div class="col-md-4 col-xs-12 col-sm-8">
 
-	                    <button id="playlistButton" type="button" class="btn col-md-3 col-xs-3 col-sm-3">
+	                    <button id="rewindButton" type="button" class="btn col-md-3 col-xs-3 col-sm-3">
 	                       <i class="material-icons">fast_rewind</i>
 	                    </button>
 
@@ -190,7 +203,7 @@
 	                        <i id="iconPlayPause" class="material-icons">play_arrow</i>
 	                    </button>
 	                
-	                    <button id="playlistButton playpause" type="button" class="btn col-md-3 col-xs-3 col-sm-3">
+	                    <button id="forwardButton" type="button" class="btn col-md-3 col-xs-3 col-sm-3">
 	                       <i class="material-icons">fast_forward</i>
 	                    </button>
 	                
@@ -198,9 +211,18 @@
 
 
 					<div class="col-md-4 col-xs-12 col-sm-8">
-	
-							<input class="bar" type="range" id="rangeinput" value="50" onchange="setVolume(value)"/>
-
+						
+						<div id="volumeMin" class="btn col-md-2 col-xs-2 col-sm-2">
+							<i  id="volume" class="material-icons">volume_mute</i>
+						</div>
+						
+						<div class="btn col-md-7 col-xs-7 col-sm-7">
+							<input class="bar" type="range" id="volumeSlider" value="50" onchange="setVolume(value)"/>
+						</div>
+						
+						<div id="volumeMax" class="btn col-md-2 col-xs-2 col-sm-2">
+							<i id="volume" class="material-icons">volume_up</i>
+						</div>
 					</div>
 
 				</div>
@@ -373,7 +395,6 @@
 	                         
 	        </div>
 	    </script>
-
 
 
 	    <!-- jQuery -->
