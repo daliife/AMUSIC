@@ -11,7 +11,6 @@
 	   
 	    <title>Amusic</title>
 	    
-
 	    <link href="css/nouislider.min.css" rel="stylesheet">
 	    <!-- Bootstrap Core CSS -->
 	    <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -24,6 +23,12 @@
 	    <link href="css/simple-sidebar.css" rel="stylesheet">
 	    <!-- Personalized CSS -->
 	    <link href="css/theme.css" rel="stylesheet">
+
+
+		<!-- ADDED -->
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
 	</head>
 
@@ -77,7 +82,7 @@
 
 
 	            <!-- BUSCADOR PRINCIPAL -->
-	            <header id="formSearch" class="jumbotron container-fluid primary">
+	            <header id="formSearch" class="jumbotron container-fluid">
 
 	                <div class="col-md-6 col-xs-12 col-sm-8 col-xs-offset-0 col-sm-offset-2 col-md-offset-3">
 
@@ -102,7 +107,7 @@
 	            <div id="resultsSearch">
 
 	                <!-- SONGS LIST -->
-	                <h3 class=" jumbotron">Songs</h3> 
+	                <h3 class="jumbotron">Songs</h3> 
 	                <div id="songsList" class="list-group container-fluid"></div>
 	                <!-- ALBUMS LIST -->
 	                <h3 class="jumbotron">Albums</h3> 
@@ -152,88 +157,53 @@
 	            
 	            </div>
 
-	            <div id="snackbar-container">
-	                <button id="snackButton" type="button" data-style="toast" data-content="Information about the actual song" data-toggle="toast" data-timeout="2000">Toast button</button>
-	            </div>
+
+	                <button id="snackButton" type="button" data-style="toast" data-content="Information about the actual song" data-toggle="toast" data-timeout="2000"> </button>
+
 
 	            <!-- MINIREPRODUCTOR -->	
-	            <div class="navbar navbar-fixed-bottom">
-					
-					<div class="col-md-12 col-xs-12 col-sm-8">
-						<input type="range" min="0" max="50" value="25" />
+	            <div id="miniplayer" class="navbar navbar-fixed-bottom navbar-default">
+				
+					<div class="col-md-12 col-xs-12 col-sm-12">
+
+							<input class="bar" type="range" id="progress" value="0" onchange="setTiming(value);"/>
+								
 					</div>
 
 					<div class="col-md-4 col-xs-12 col-sm-8">
-						<div class="col-md-6 col-xs-12 col-sm-8">
-							<img id="imagePlayingSong" src="images/logo_provisional.png" class="navbar-brand"></img>
-						</div>
+						
+							<img id="imagePlayingSong" src="images/logo_provisional.png" class="navbar-brand img-responsive"></img>
 
-						<div class="col-md-6 col-xs-12 col-sm-8">
-							<p id="namePlayingSong" class="navbar-brand" >Hello </p>
+							<h4 id="namePlayingSong">Hello </h4>
 							<p id="albumPlayingSong">Aloha</a>
-						</div>
+
 					</div>
 
 
 					<div class="col-md-4 col-xs-12 col-sm-8">
 
-	                    <button id="playlistButton" type="button" class="btn ">
+	                    <button id="playlistButton" type="button" class="btn col-md-3 col-xs-3 col-sm-3">
 	                       <i class="material-icons">fast_rewind</i>
 	                    </button>
 
-						<button id="playButton" type="button" class="btn ">          
+						<button id="playButton" type="button" class="btn col-md-3 col-xs-3 col-sm-3">          
 	                        <i id="iconPlayPause" class="material-icons">play_arrow</i>
 	                    </button>
 	                
-	                    <button id="playlistButton" type="button" class="btn ">
+	                    <button id="playlistButton playpause" type="button" class="btn col-md-3 col-xs-3 col-sm-3">
 	                       <i class="material-icons">fast_forward</i>
 	                    </button>
 	                
-	                    <button id="playlistButton" type="button" class="btn ">
-	                        <i class="material-icons">playlist_play</i>
-	                    </button>
 					</div>
 
 
 					<div class="col-md-4 col-xs-12 col-sm-8">
-						<input type="range" min="0" max="50" value="25" />	
+	
+							<input class="bar" type="range" id="rangeinput" value="50" onchange="setVolume(value)"/>
+
 					</div>
 
 				</div>
-
-
-<!-- 	            <nav id="miniPlayer" class="navbar navbar-fixed-bottom" role="navigation">
-
-	              <div class="container">
-
-	                <div class="navbar-header">
-	                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	                    <span class="sr-only">Toggle navigation</span>
-	                    <span class="icon-bar"></span>
-	                    <span class="icon-bar"></span>
-	                    <span class="icon-bar"></span>
-	                  </button>
-	                  <img id="imagePlayingSong" src="images/logo_provisional.png" class="navbar-brand"></img>
-	                  <p id="namePlayingSong" class="navbar-brand" > </p>
-	                </div>
-
-	                <div id="navbar" class="navbar-collapse collapse">
-	                  <ul class="nav navbar-nav">
-	                    <li>
-	                        <a href="#" id="albumPlayingSong"> </a>
-	                    </li>
-	                  </ul>
-	                  <ul class="nav navbar-nav navbar-right">
-	                    <button id="playButton" type="button" class="btn btn-fab btn-fab-mini">                 
-	                        <i id="iconPlayPause" class="material-icons">play_arrow</i>
-	                    </button>
-	                    <button id="playlistButton" type="button" class="btn btn-fab btn-fab-mini">
-	                        <i class="material-icons">playlist_play</i>
-	                    </button>
-	                  </ul>
-	                </div><!/.nav-collapse
-	              </div>
-	            </nav> -->     
 	      
 	        </div>
 	        <!-- /#FI CONTINGUT PÀGINA -->
@@ -245,6 +215,7 @@
 	    <!-- SONGS TEMPLATE -->
 	    <script id="songTemplate" type="text/x-jquery-tmpl">
 	        <div class="list-group-item">
+	            
 	            <div class="row-action-primary">
 	              <img class="img-circle" src=${album.images[1].url}>
 	            </div>
@@ -258,6 +229,10 @@
 						    <i class="material-icons">play_arrow</i>
 						</button>
 
+						<button class="btn btn-fab btn-fab-mini" role="button" data-toggle="collapse" href="#collapseSongs" aria-expanded="false" aria-controls="collapseSongs">
+						  <i class="material-icons">info_outline</i>
+						</button>
+
 						<button id="button" type="button" class="btn btn-fab btn-fab-mini" onclick="addItemPlaylist('${name}','${artists[0].name}','${album.name}','${album.images[1].url}','${preview_url}', this ,'${popularity}','${artists[0].href}');">
 						    <i class="material-icons">star_border</i>
 						</button>
@@ -265,13 +240,14 @@
 					</div>
 
 					<h4 class="list-group-item-heading"><b>${name}</b></h4>
-					<p class="list-group-item-text">${album.name}</p>
+					<p class="list-group-item-text">${album.name} || ${artists[0].name}</p>
+
 
 	            </div>
 
 	        </div>
 
-	      	<div class="list-group-separator"></div>   
+	        <div class="list-group-separator"></div> 
 	    </script>
 	    <!-- ALBUM TEMPLATE -->
 	    <script id="albumTemplate" type="text/x-jquery-tmpl">
@@ -279,7 +255,9 @@
 	            <div class="card">
 	                <div class="card-image">
 	                    <img id="imgAlbum" class="img-responsive" src=${images[1].url}>
-	                    <span id="nameAlbum" class="card-title"><i class="material-icons">album</i></span>${name}</span>
+	                    <span id="nameAlbum" class="card-title">
+	                    	<i class="material-icons">album</i></span>${name}
+                    	</span>
 	                </div>
 	                
 	                <div class="card-content">
@@ -299,10 +277,6 @@
 				<div class="row-content">
 				  <div class="action-secondary">
 				    
-				    <button type="button" id="button" class="btn btn-fab btn-fab-mini">
-				        <i class="material-icons">play_arrow</i>
-				    </button>
-
 				    <button type="button" id="button" class="btn btn-fab btn-fab-mini">
 				        <i class="material-icons">info_outline</i>
 				    </button>
@@ -376,13 +350,13 @@
 	    <script id="artistsFavorited" type="text/x-jquery-tmpl">
 	        <div class="list-group-item">
 	            <div class="row-action-primary">
-	              <img class="img-circle" src="${urlArtist}"></img>
+	              <img class="img-circle" src="${url_Artist}"></img>
 	            </div>
 	            <div class="row-content">
 	              <div class="action-secondary">
 	                
 	                <button type="button" id="button" class="btn btn-fab btn-fab-mini">
-	                    <i class="material-icons">info</i>
+	                    <i class="material-icons">info_outline</i>
 	                </button>
 	    
 	                <button type="button" id="button" class="btn btn-fab btn-fab-mini" onclick="deleteArtistPlayList('${artist}');">
@@ -403,7 +377,7 @@
 
 
 	    <!-- jQuery -->
-	    <script src="js/jquery.js"></script>
+<!-- 	    // <script src="js/jquery.js"></script> -->
 	    <script src="js/jquery.tmpl.min.js"></script>
 	    <script src="js/jquery.tmplPlus.min.js"></script>
 	    <!-- Bootstrap Core JavaScript -->

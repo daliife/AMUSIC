@@ -1,4 +1,25 @@
-// buttonscontroler.js
+//buttonscontroler.js
+var showingMiniplayer = false;
+
+function updatePlayerInfo(urlImage, nameSong, nameAlbum){
+    document.getElementById("imagePlayingSong").src = urlImage;
+    document.getElementById("namePlayingSong").innerHTML = nameSong;
+    document.getElementById("albumPlayingSong").innerHTML = nameAlbum;     
+}
+
+function callSnackBar(nameSong, nameAlbum){
+     document.getElementById("snackButton").setAttribute('data-content',"Playing "+ nameSong + ", from " + nameAlbum);
+    $("#snackButton").snackbar("toggle");  
+  
+}
+
+function callMiniPlayerEffect(){
+    if (!showingMiniplayer) {
+        console.log("entering...");
+        $("#miniplayer").show("slow");
+
+    };
+}
 
 function checkSubmit() {
     if ( document.getElementById("addon2").value == "" ){
@@ -19,18 +40,10 @@ function changeIconPlay(play_flag){
 }
 
 function playSong(url, urlImage, nameSong, nameAlbum, id, nameArtist){
-    document.getElementById("imagePlayingSong").src = urlImage;
-    document.getElementById("namePlayingSong").innerHTML = nameSong;
-    document.getElementById("albumPlayingSong").innerHTML = nameAlbum;
-    
-    document.getElementById("snackButton").setAttribute('data-content',"Playing "+ nameSong + ", from " + nameAlbum);
-    $("#snackButton").snackbar("toggle");
-    
-    song.pause();
-    song = new Audio(url);
-    song.play();
-    changeIconPlay(true);
-    
+    updatePlayerInfo(urlImage, nameSong, nameAlbum);
+    callSnackBar(nameSong,nameAlbum);
+    callMiniPlayerEffect();
+    addPlayer(url);
     addItemSongsPlayed(id,nameArtist,nameSong,nameAlbum,1);       
 }
 
@@ -62,7 +75,8 @@ function show(){
             $("#recomendations").show();
             $("#songs").hide();
             $("#albums").hide();
-            $("#artists").hide();              
+            $("#artists").hide();
+            updateSuggestions();              
             break;
 
         case "linkSongs":
@@ -111,9 +125,7 @@ function show(){
 $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip();
-
     outputPlaylist();
-
 
     $('.form-control').keyup(function (e) {
         if (e.keyCode === 13 && checkSubmit()) {
@@ -146,25 +158,3 @@ $(document).ready(function(){
     $("#playButton").click(show); 
 
 });
-
-// var myMedia = document.createElement('audio');
-// $('#player').append(myMedia);
-// myMedia.id = "myMedia";
-// playAudio('http://iviewsource.com/exercises/audioslider/audio/ViewSource', 0);
-
-// function playAudio(fileName, myVolume) {
-//     var mediaExt = (myMedia.canPlayType('audio/mp3')) ? '.mp3' 
-//     : (myMedia.canPlayType('audio/ogg')) ? '.ogg' 
-//     : '';
-//     if (mediaExt) {
-//     myMedia.src = fileName + mediaExt;
-//     myMedia.setAttribute('loop', 'loop');
-//     setVolume(myVolume);
-//     myMedia.play();
-//   }
-// }
-
-// function setVolume(myVolume) {
-//     var myMedia = document.getElementById('myMedia');
-//     myMedia.volume = myVolume;
-// }

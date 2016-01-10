@@ -1,6 +1,4 @@
 //Test for browser compatibility
-var urlArtist = " ";
-
 if (window.openDatabase) {
     //Create the database the parameters are 1. the database name 2.version number 3. a description 4. the size of the database (in bytes) 1024 x 1024 = 1MB
     var mydb = openDatabase("AMusic", "0.1", "A Database of Songs I Like", 1024 * 1024);
@@ -16,7 +14,6 @@ if (window.openDatabase) {
 } else {
     alert("WebSQL is not supported by your browser!");
 }
-
 
 function updateFavoritedSongs(transaction, results) {
     var i;
@@ -54,7 +51,7 @@ function outputPlaylist() {
         mydb.transaction(function (t) {
             t.executeSql("SELECT * FROM playlist", [], updateFavoritedSongs);
             t.executeSql("SELECT DISTINCT album,image FROM playlist", [], updateFavoritedAlbums);
-            t.executeSql("SELECT DISTINCT artist,image,popularity,urlArtist FROM playlist GROUP BY artist", [], updateFavoritedArtists);
+            t.executeSql("SELECT DISTINCT artist,image,popularity,url_Artist FROM playlist GROUP BY artist", [], updateFavoritedArtists);
         });
     } else {
         alert("ERROR: db not found, your browser does not support web sql!");
@@ -62,9 +59,13 @@ function outputPlaylist() {
 
 }
 
-function addItemPlaylist(song, artist, album, image, preview, id, popularity, url) {
-   	
-   
+function addItemPlaylist(song, artist, album, image, preview, id, popularity, path) {
+    
+    var urlArtist = " ";
+    $.getJSON(path, function(data) {
+        urlArtist = data.images[0].url;
+    }); 
+
    	$("#songsListFavorited").empty();
    	$("#albumsListFavorited").empty();
     $("#artistsListFavorited").empty();
@@ -73,23 +74,8 @@ function addItemPlaylist(song, artist, album, image, preview, id, popularity, ur
     if (mydb) {
        
         if (song !== "" && artist !== "") {
-            
-
-            $.ajax({
-                url: url,
-                type:"GET",
-                dataType:"json",
-                success:function(json){ 
-                    urlArtist = json.images[0].url;
-                    console.log("PART1-->" + urlArtist);        
-                },
-                error: function(){
-                    console.log("error: Cannot get url artist!");
-                }
-            }); 
 
             mydb.transaction(function (t) {
-                console.log("PART2-->" + urlArtist);
                 t.executeSql("INSERT INTO playlist(song,artist,album,image,preview_song,popularity,url_Artist) VALUES (?, ?, ?, ?, ?, ?, ?)", [song, artist, album, image, preview, popularity, urlArtist]);
                 outputPlaylist();
             });
@@ -184,6 +170,58 @@ function updateBadges() {
     }
 }
 
+
+
+
+//TODO: TO CURE FROM CANCER
+function isEmpty(){
+    var counter = 0;
+     if (mydb) {
+ 
+        mydb.transaction(function (t) {
+            t.executeSql("SELECT ID FROM playlist ",[], NoScope);
+        });
+       
+    } else {
+        alert("db not found, your browser does not support web sql!");
+    }  
+ /*
+    if (counter == 0){
+        return true;
+    }else{
+        return false;
+       
+    }*/
+}
+
+function mostPlayed(){
+ var nameArtist="";
+    if (mydb) {
+        mydb.transaction(function (t) {
+            t.executeSql("SELECT artist FROM songsplayed order by counter limit 1", [],  function(transaction, results){
+                
+                    nameArtist = results.rows.item[1].name;
+                    console.log(nameArtist);
+                    noScope360(nameArtist);
+                
+            });
+        });
+    } else {
+        alert("ERROR: db not found, your browser does not support web sql!");
+    }
+}
+
+function NoScope(transaction, results){
+
+    counter=results.rows.length;
+    console.log("1--> "+ counter);
+            
+    if (counter === 0){
+        changeEmpty(true);
+    }else{
+         changeEmpty(false);
+    }
+}
 
 
 

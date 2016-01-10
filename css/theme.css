@@ -59,6 +59,7 @@ h1,h3{
 
 #nameAlbum{
 	vertical-align: middle;
+	font-size: 18px;
 }
 
 #button{
@@ -78,7 +79,7 @@ h1,h3{
 	padding: 0px;
 	margin: 5px;
 	margin-right: 20px;
-    border-radius: 50%;
+/*    border-radius: 50%;*/
 }
 
 #miniPlayer{
@@ -100,15 +101,12 @@ h1,h3{
 	display: none;
 }
 
-#snackbar-container{
+#snackButton{
+	display: none;
 	position: fixed;
 	float: left;
 	left: 20px;
-	bottom: 70px;
-}
-
-#snackButton{
-	display: none;
+	bottom: 100px;
 }
 
 body {
@@ -130,6 +128,34 @@ body {
 	-o-text-overflow: elipsis;
 }
 
+.navbar{
+	background-color: rgba(255,255,255,0.85)!important;
+	opacity: 80%!important;
+}
+
+#namePlayingSong{
+	font-weight: bold;
+	font-size: 16px;
+}
+
+#albumPlayingSong{
+	font-style: italic;
+	font-size: 14px;
+}
+
+#namePlayingSong,#albumPlayingSong{
+	color: black;
+}
+
+#miniplayer{
+	display: none;
+/*	-webkit-transition: all 2.5s ease-in-out;
+	-moz-transition: all 2.5s ease-in-out;
+	-ms-transition: all 2.5s ease-in-out;
+	-o-transition: all 2.5s ease-in-out;
+	transition: all 2.5s ease-in-out;*/
+
+}
 
 /*ANIMACIO FADEIN*/
 #wrapper{
@@ -170,4 +196,3 @@ body {
         opacity: 1;
     }
 }
-
