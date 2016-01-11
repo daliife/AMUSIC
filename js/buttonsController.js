@@ -40,7 +40,7 @@ function changeIconPlay(play_flag){
 
 function playSong(url, urlImage, nameSong, nameAlbum, id, nameArtist){
     updatePlayerInfo(urlImage, nameSong, nameAlbum);
-    callSnackBar(nameSong,nameAlbum);
+    //callSnackBar(nameSong,nameAlbum);
     callMiniPlayerEffect();
     addPlayer(url);
     addItemSongsPlayed(id,nameArtist,nameSong,nameAlbum,1);       
