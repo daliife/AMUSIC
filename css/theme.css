@@ -84,10 +84,7 @@ h3{
 }
 
 #miniPlayer{
-<<<<<<< HEAD
 	background-color: rgba(0, 0, 0, 0.85);
-=======
->>>>>>> Fixing colors
 	z-index: 999;
 }
 
@@ -144,12 +141,7 @@ body {
 }
 
 .navbar{
-<<<<<<< HEAD
-	background-color: rgba(0,0,0,0.85)!important;
-=======
 	background-color: rgba(0,0,0,0.85);
->>>>>>> Fixing colors
-
 }
 
 #namePlayingSong{
@@ -167,10 +159,7 @@ body {
 }
 
 #miniplayer{
-<<<<<<< HEAD
-=======
   background-color: rgba(255,255,255,0.85);
->>>>>>> Fixing colors
 	display: none;
 	bottom: 0px;
 }
