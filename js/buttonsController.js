@@ -1,4 +1,4 @@
-//buttonscontroler.js
+// buttonscontroler.js
 var showingMiniplayer = false;
 
 function updatePlayerInfo(urlImage, nameSong, nameAlbum){
@@ -15,7 +15,6 @@ function callSnackBar(nameSong, nameAlbum){
 
 function callMiniPlayerEffect(){
     if (!showingMiniplayer) {
-        // $("#miniplayer").slideDown(1000);
         $( "#miniplayer" ).show( 'slide', { direction: "down" } , 500);
     };
 }

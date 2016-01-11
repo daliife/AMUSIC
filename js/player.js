@@ -1,19 +1,25 @@
-
+// player.js
 var song = document.createElement('audio');
-song.setAttribute("id","audio");
 var isPlaying = false;
+song.setAttribute("id","audio");
 
-// SECCIO CREACIO AUDIO + PLAYPAUSE
+
+//Actualitza l'slider de progress de la canço al minireproductor
 function progress() {
 	document.getElementById("progress").value = ((song.currentTime/song.duration)*100);
 }
+
+//Actualitza la src del tag audio que s'esta utilitzant i reseteja l'estat del volum 
 function updateSource(url){ 
     song.src = url;
     song.volume = 0.5;
     song.load();
     song.addEventListener("timeupdate", progress, false);
+    document.getElementById("volumeSlider").value = 50;
     getVolume();
 }
+
+//Reprodueix una cançó concreta a partir de la url passada per paràmetre
 function addPlayer(url){
 	song.pause();
 	updateSource(url);
@@ -22,72 +28,32 @@ function addPlayer(url){
 	isPlaying = true;
 }
 
-// SECCIO VOLUM
+//Fixa un volum de la cançó i de l'slider corresponent a aquest
 function setVolume(volum){
   song.volume=volum/100;
   document.getElementById("volumeSlider").value = volum;
-  getVolume();
-}
-function getVolume(){
-	console.log("El volum actual es de: " + song.volume*100 + "%");
 }
 
-// SECCIO TEMPS AUDIO
-function getSongTime(){
-    console.log("Current song time: "+ song.currentTime + " seconds");
-}
+//Funció que fixa el temps concret d'una canço a partir del parametre percent
 function setTiming(percent){
 	if (isPlaying) {
 		song.currentTime = song.duration/100*percent;
-		console.log("Time set at " + song.currentTime);		
 	};
 }
+
+//Funció que oculta el minireproductor quan la canço s'acaba
 song.onended = function() {
-	// TODO: CHECK IF THERE ARE MORE SONGS TO PLAY
-	// $( "#miniplayer" ).show( 'slide', { direction: "up" } , 500);
 	$( "#miniplayer" ).hide('slow');
     console.log("The song has ended");
 	isPlaying = false;   
 };
 
+//Funció utilitzada per debbuging per obtenir el volum
+function getVolume(){
+	console.log("El volum actual es de: " + song.volume*100 + "%");
+}
 
-// var $aud = $("#audio"),
-//   $pp  = $('#playpause'),
-//   $vol = $('#volume'),
-//   $bar = $("#progressbar"),
-//   AUDIO= $aud[0];
-
-// AUDIO.volume = 0.5;
-// AUDIO.addEventListener("timeupdate", progress, false);
-
-// function getTime(t) {
-// var m=~~(t/60), s=~~(t % 60);
-// return (m<10?"0"+m:m)+':'+(s<10?"0"+s:s);
-// }
-
-// function progress() {
-// $bar.slider('value', ~~(100/AUDIO.duration*AUDIO.currentTime));
-// // $pp.text(getTime(AUDIO.currentTime));
-// }
-
-// $vol.slider( {
-// value : AUDIO.volume*100,
-// slide : function(ev, ui) {
-//   // $vol.css({background:"hsla(180,"+ui.value+"%,50%,1)"});
-//   AUDIO.volume = ui.value/100; 
-// } 
-// });
-
-// $bar.slider( {
-// value : AUDIO.currentTime,
-// slide : function(ev, ui) {
-//   AUDIO.currentTime = AUDIO.duration/100*ui.value;
-// }
-// });
-
-// $pp.click(function() {
-// return AUDIO[AUDIO.paused?'play':'pause']();
-// });
-  
-
-
+//Funció utilitzada per debbuging per obtenir el temps de la canço
+function getSongTime(){
+    console.log("Current song time: "+ song.currentTime + " seconds");
+}

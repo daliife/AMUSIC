@@ -1,12 +1,12 @@
-
+//petitioncontroller.js
 var spotifyApi = new SpotifyWebApi();
 var numSongs = 6;
 var numArtists = 6;
 var numAlbums = 6;
-// var clientID = "6b97605d73b54ff0910c0d10b0410513";
-// var clientIDSecret = "9b56e5b116594e71bcaabbc4fc2341f8";
-// spotifyApi.setAccessToken(clientIDSecret);
+var isEmpty;
+var hasAnySongPlayed;
 
+//Funció que obté les cançons demanades per l'usuari i les afegeix a la llista de cançons obtingudes
 function getSongs(petitionName, numSongs){	
 		
 		$("#songsList").empty();
@@ -21,6 +21,7 @@ function getSongs(petitionName, numSongs){
 
 }
 
+//Funció que obté els àlbums demanats per l'usuari i els afegeix a la llista d'àlbums obtingudes
 function getAlbums(petitionName, numAlbums){	
 		
 		$("#albumsList").empty();
@@ -35,6 +36,7 @@ function getAlbums(petitionName, numAlbums){
 
 }
 
+//Funció que obté els artistes demanats per l'usuari i els afegeix a la llista d'artistes obtingudes
 function getArtists(petitionName, numArtists){	
 		
 		$("#artistsList").empty();
@@ -49,53 +51,13 @@ function getArtists(petitionName, numArtists){
 
 }
 
+//Crida de les tres funcions de busca
 function searchAction(petitionName){
 
 		getSongs(petitionName, numSongs);
 		getAlbums(petitionName,numAlbums);
 		getArtists(petitionName,numArtists);
 
-}
-
-function recomendedSongs(artist){
-
-	spotifyApi.getArtistRelatedArtists(artist, null).then(function(data) {  
-	    console.log(data);
-	    //Guardo Artistes
-	    for(var i = 0; i<numArtists;i++){
-			getRecArtists(data.artists[i].name,1);
-		}
-	    //Guardo cançons
-		for(var i = 0; i<numSongs;i++){
-			getRecSongs(data.artists[i].name,1);
-		}
-		//Guardo albums
-		for(var i = 0; i<numSongs;i++){
-			getRecAlbums(data.artists[i].name,1);
-		}
-
-	  }, function(err) {
-	    console.error(err);
-	  });
-
-}
-
-function trendingSongs(){
-
-	$.ajax({
-		url:"http://developer.echonest.com/api/v4/artist/top_hottt?api_key=KLQS7H9RMIF0J7KNS&format=json&results="+numArtists+"&start=0&bucket=hotttnesss",
-		type:"GET",
-		dataType:"json",
-		success:function(json){
-			for (var i=0 ; i<json.response.artists.length; i++){
-				getRecArtists(json.response.artists[i].name,1);
-				getRecSongs(json.response.artists[i].name,2);
-				getRecAlbums(json.response.artists[i].name,2);
-			}
-		},error: function(){
-			console.log("error: Cannot get trendingSongs");
-		}
-	});
 }
 
 function getRecSongs(petitionName, numSongs){
@@ -134,22 +96,82 @@ function getRecArtists(petitionName, numArtists){
 		  });
 
 }
+//Funció que obté les cançons, albums i artistes recomanats
+function recomendedSongs(artist){
+
+	spotifyApi.getArtistRelatedArtists(artist, null).then(function(data) {  
+	    console.log(data);
+	    for(var i = 0; i<numArtists;i++){
+			getRecArtists(data.artists[i].name,1);
+		}
+		for(var i = 0; i<numSongs;i++){
+			getRecSongs(data.artists[i].name,1);
+		}
+		for(var i = 0; i<numSongs;i++){
+			getRecAlbums(data.artists[i].name,1);
+		}
+
+	  }, function(err) {
+	    console.error(err);
+	  });
+
+}
+
+function changeEmpty(flag){
+	if (!flag) {
+		isEmpty = false;
+		console.log("Esta full!");
+	}else{
+		isEmpty = true;
+		console.log("Esta empty!");
+	};
+
+}
+
+function checkPlayedDatabase(flag){
+	if (flag) {
+		hasAnySongPlayed = true;
+		console.log("Hi ha cancons reproduides!");
+	}else{
+		hasAnySongPlayed = false;
+		console.log("No hi ha cancons reproduides!");
+	};
+}
+
 
 function updateSuggestions(){
+	
 	$("#songsListRecomendation").empty();
 	$("#artistsListRecomendation").empty();
 	$("#albumsListRecomendation").empty();
-	isEmpty();
+	checkEmpty();
+	checkSongsPlayed();
 	
-	if(true){
+	if(isEmpty && !hasAnySongPlayed){
 		console.log("No hi ha res");
 		trendingSongs();
-		//songs
 	}else{
 		console.log("Hi ha quelcom");
-		//mostPlayed();
+		console.log(mostPlayed());
 		recomendSongs(mostPlayed());		
 	}
 	
 }
 
+function trendingSongs(){
+
+	$.ajax({
+		url:"http://developer.echonest.com/api/v4/artist/top_hottt?api_key=KLQS7H9RMIF0J7KNS&format=json&results="+numArtists+"&start=0&bucket=hotttnesss",
+		type:"GET",
+		dataType:"json",
+		success:function(json){
+			for (var i=0 ; i<json.response.artists.length; i++){
+				getRecArtists(json.response.artists[i].name,1);
+				getRecSongs(json.response.artists[i].name,2);
+				getRecAlbums(json.response.artists[i].name,2);
+			}
+		},error: function(){
+			console.log("error: Cannot get trendingSongs");
+		}
+	});
+}

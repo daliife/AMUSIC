@@ -10,127 +10,100 @@ h3{
 	color: black;
 	font-weight: normal;
 }
-
+body {
+  font-family: "Roboto";
+  background-color: white;
+}
 #cursive{
 	font-style: italic;
 }
-
 #sidebarLogo{
 	margin: 15px 25px 15px 0px;
 }
-
 .badge{
 	float: right;
 	margin-right: 35px;
 	margin-top: 15px;
 }
-
 #linkBrand{
 	text-align: center;
 	padding-top: 15px;
 	padding-bottom: 150px;
 }
-
 .img-circle{
     border-radius: 50%;
 }
-
 #cardAlbum{
 	padding: 15px;
 }
-
 #imgAlbum{
 	width:100%;
 }
-
 #menu-toggle{
 	outline: none;
 }
-
 #logoImage{
 	display: inline;
 	height: 150px;
 	width: 150px;
 }
-
 .well{
 	border-radius: 20px;
 }
-
 #iconAlbum{
 	margin: 10px;
 	float: left;
 }
-
 #nameAlbum{
 	vertical-align: middle;
 	font-size: 18px;
 }
-
 #button{
 	margin-right: 10px;
 	margin-left: 10px;
 }
-
-
 #searchButton, #playButton, #playlistButton, #button{
 	outline: none;
 }
-
 #imagePlayingSong{
 	padding: 0px;
 	margin: 5px;
 	margin-right: 20px;
 }
-
 #miniPlayer{
 	background-color: rgba(0, 0, 0, 0.85);
 	z-index: 999;
 }
-
 #songs, #albums, #artists{
 	display: none;
 }
-
 #buttonAlbum{
 	position: absolute;
 	top: 50%;
 	padding-top: 50px;
 }
-
 #recomendations{
 	display: none;
 }
-
 #snackButton{
 	display: none;
 	position: fixed;
 	float: left;
 	left: 20px;
 	bottom: 100px;
-
 }
 #whiteColor{
 	color: white;
 }
-
-body {
-	font-family: "Roboto";
-	background-color: white;
-}
-
 #formSearch{
 	background-color: rgba(0,0,0,0.85)!important;
 }
-
 .control-label:target{
 	color: white;
 }
-
 #addon2{
 	color: white;
 }
-
 #nameAlbum{
 	font-size: 16px;
 	font-weight: bold;
@@ -139,40 +112,31 @@ body {
 	text-overflow: elipsis;
 	-o-text-overflow: elipsis;
 }
-
 .navbar{
 	background-color: rgba(0,0,0,0.85);
 }
-
 #namePlayingSong{
 	font-weight: bold;
 	font-size: 16px;
 }
-
 #albumPlayingSong{
 	font-style: italic;
 	font-size: 14px;
 }
-
 #namePlayingSong,#albumPlayingSong{
 	color: black;
 }
-
 #miniplayer{
   background-color: rgba(255,255,255,1);
 	display: none;
 	bottom: 0px;
 }
-
 #page-content-wrapper{
 	padding: 0px;
 }
-
 #sidebar-wrapper{
 	z-index: 1031;
 }
-
-
 #etiqueta{
 /*	border-top: 1px solid;*/
 	border-color: grey;
@@ -183,7 +147,6 @@ body {
 	padding-top: 20px;
 	margin: 0px;
 }
-
 #lineTop{
 	border-top: 1px solid grey;
 	padding-bottom: 5px;
@@ -191,13 +154,9 @@ body {
 	padding-right: 20px;
 	padding-left: 20px;
 }
-
 #volume{
 	color: black;
 }
-
-
-
 /*ANIMACIO FADEIN*/
 #wrapper{
     animation: fadein 1s;
@@ -237,8 +196,6 @@ body {
         opacity: 1;
     }
 }
-
-
 /*SLIDERS CSS*/
 input[type=range] {
   -webkit-appearance: none;

@@ -1,12 +1,17 @@
 # AMUSIC - Recomendation app
 
-## Group
-
-This aplication was made by:
+## Grup
+Aquesta aplicació ha estat creada per:
 * David Gimeno 
 * Jordi Roig
 * David Curto
 
-## Copyright and License
+## Descripció
+
+
+## Captures de pantalla
+
+
+## Copyright
 
 Copyright - Campus la Salle Barcelona 2015

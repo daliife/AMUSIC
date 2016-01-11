@@ -1,4 +1,6 @@
-//Test for browser compatibility
+// database.js
+
+//Creació de la base de dades amb sql
 if (window.openDatabase) {
     //Create the database the parameters are 1. the database name 2.version number 3. a description 4. the size of the database (in bytes) 1024 x 1024 = 1MB
     var mydb = openDatabase("AMusic", "0.1", "A Database of Songs I Like", 1024 * 1024);
@@ -15,6 +17,7 @@ if (window.openDatabase) {
     alert("WebSQL is not supported by your browser!");
 }
 
+//Actualitza les cançons favorites de l'usuari
 function updateFavoritedSongs(transaction, results) {
     var i;
    	$("#songsListFavorited").empty();
@@ -25,6 +28,7 @@ function updateFavoritedSongs(transaction, results) {
 
 }
 
+//Actualitza els albums favorits de l'usuari
 function updateFavoritedAlbums(transaction, results) {
     var i;
 	$("#albumsListFavorited").empty();
@@ -35,6 +39,7 @@ function updateFavoritedAlbums(transaction, results) {
 
 }
 
+//Actualitza els artistes favorits de l'usuari
 function updateFavoritedArtists(transaction, results) {
     var i;
     $("#artistsListFavorited").empty();
@@ -59,6 +64,7 @@ function outputPlaylist() {
 
 }
 
+//Afegeix una cançó especifica a la llista de favorits
 function addItemPlaylist(song, artist, album, image, preview, id, popularity, path) {
     
     var urlArtist = " ";
@@ -87,6 +93,7 @@ function addItemPlaylist(song, artist, album, image, preview, id, popularity, pa
 
 }
 
+//Elimina una cançó especifica de la llista de favorits
 function deleteItemPlayList(id) {
     if (mydb) {
         mydb.transaction(function (t) {
@@ -101,6 +108,7 @@ function deleteItemPlayList(id) {
 
 }
 
+//Eliminia un artista de la llista de favorits
 function deleteArtistPlayList(artist) {
     if (mydb) {
         mydb.transaction(function (t) {
@@ -115,6 +123,7 @@ function deleteArtistPlayList(artist) {
 
 }
 
+//Afegeix una canço reproduida a la base de dades corresponent
 function addItemSongsPlayed(id, title, artist, album, timesplayed) { 
     if (mydb) {
 
@@ -126,11 +135,9 @@ function addItemSongsPlayed(id, title, artist, album, timesplayed) {
             counter=results.rows.length;
         
             if (counter >= 1){
-                console.log("info: HAS ESCOLTAT LA CANCO 2 O MES COPS");
                 t.executeSql("UPDATE songsplayed SET counter = counter+1 WHERE ID =?",[id]);
             }else{
-                  t.executeSql("INSERT INTO songsplayed(id,title,artist,album,counter) VALUES (?,?,?,?,?)", [id,title,artist,album,timesplayed]);
-                
+                t.executeSql("INSERT INTO songsplayed(id,title,artist,album,counter) VALUES (?,?,?,?,?)", [id,title,artist,album,timesplayed]);       
             }
          
          });
@@ -169,7 +176,7 @@ function updateBadges() {
 
 
 //TODO: TO CURE FROM CANCER
-function isEmpty(){
+function checkEmpty(){
     var counter = 0;
      if (mydb) {
  
@@ -180,13 +187,19 @@ function isEmpty(){
     } else {
         alert("db not found, your browser does not support web sql!");
     }  
- /*
-    if (counter == 0){
-        return true;
-    }else{
-        return false;
+}
+
+function checkSongsPlayed(){
+    var counter = 0;
+     if (mydb) {
+ 
+        mydb.transaction(function (t) {
+            t.executeSql("SELECT ID FROM songsplayed",[], NoScope2);
+        });
        
-    }*/
+    } else {
+        alert("db not found, your browser does not support web sql!");
+    }  
 }
 
 function mostPlayed(){
@@ -206,15 +219,22 @@ function mostPlayed(){
     }
 }
 
-function NoScope(transaction, results){
 
+function NoScope(transaction, results){
     counter=results.rows.length;
-    console.log("1--> "+ counter);
-            
     if (counter === 0){
         changeEmpty(true);
     }else{
          changeEmpty(false);
+    }
+}
+
+function NoScope2(transaction, results){
+    counter=results.rows.length;
+    if (counter === 0){
+        checkPlayedDatabase(false);
+    }else{
+        checkPlayedDatabase(true);
     }
 }
 
