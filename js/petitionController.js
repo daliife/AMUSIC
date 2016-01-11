@@ -57,21 +57,6 @@ function searchAction(petitionName){
 
 }
 
-// function similarArtists(artist){
-
-// 	$.ajax({
-// 		url:"http://developer.echonest.com/api/v4/artist/similar?api_key=KLQS7H9RMIF0J7KNS&id="+artist+"&format=json&results=10&start=0",
-// 		type:"GET",
-// 		dataType:"json",
-// 		success:function(json){
-// 			for (var i=0 ; i<json.response.artists.length; i++){
-// 				console.log(json.response.artists[i].name +"   "+ json.response.artists[i].id );
-// 			}
-// 		}
-// 	})
-
-// }
-
 function recomendedSongs(artist){
 
 	spotifyApi.getArtistRelatedArtists(artist, null).then(function(data) {  
