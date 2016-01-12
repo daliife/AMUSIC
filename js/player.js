@@ -4,6 +4,7 @@ var isPlaying = false;
 song.setAttribute("id","audio");
 
 
+
 //Actualitza l'slider de progress de la canço al minireproductor
 function progress() {
 	document.getElementById("progress").value = ((song.currentTime/song.duration)*100);
@@ -12,11 +13,11 @@ function progress() {
 //Actualitza la src del tag audio que s'esta utilitzant i reseteja l'estat del volum 
 function updateSource(url){ 
     song.src = url;
-    song.volume = 0.5;
     song.load();
     song.addEventListener("timeupdate", progress, false);
-    document.getElementById("volumeSlider").value = 50;
     getVolume();
+    //song.volume = 0.5;
+    //document.getElementById("volumeSlider").value = 50;
 }
 
 //Reprodueix una cançó concreta a partir de la url passada per paràmetre

@@ -74,16 +74,13 @@ body {
 	background-color: rgba(0, 0, 0, 0.85);
 	z-index: 999;
 }
-#songs, #albums, #artists{
+#songs, #albums, #artists, #resultsSearch{
 	display: none;
 }
 #buttonAlbum{
 	position: absolute;
 	top: 50%;
 	padding-top: 50px;
-}
-#recomendations{
-	display: none;
 }
 #snackButton{
 	display: none;

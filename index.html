@@ -42,7 +42,7 @@
 
 	            <ul class="sidebar-nav">
 	                <li class="sidebar-brand" id="linkBrand">
-	                    <img id="logoImage" src="images/logo_provisional.png" alt="Logo Image">
+	                    <img id="logoImage" src="images/final_logo_white.png" alt="Logo Image">
 	                </li>
 	                <li>
 	                    <a href="javascript:void(0)" id="linkSearch">
@@ -87,8 +87,8 @@
 				<nav id="buscador" class="row">
 				    <div class="navbar navbar-static-top">
 				    	
-				    	<div class="col-md-3 col-xs-12 col-sm-12">
-				            <button class="btn" id="menu-toggle" data-toggle="tooltip" data-placement="right" title="Click to open the menu" data-original-title="tooltip">
+				    	<div class="col-md-3 col-xs-12 col-sm-12 text-right">
+				            <button class="btn " id="menu-toggle" data-toggle="tooltip" data-placement="top" title="Click to open the menu" data-original-title="tooltip">
 				                <i id="whiteColor" class="material-icons">reorder</i>
 				            </button> 				    	
 				        </div>
@@ -230,7 +230,55 @@
 					</div>
 
 				</div>
-	      
+
+
+				<div id="modalArtist" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+				  <div class="modal-dialog modal-lg">
+				    <div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 id="artistName" class="modal-title" id="myModalLabel">Modal title</h4>
+						</div>
+
+						<div class="modal-body">
+							<h4><b>Popularity</b></h4>						
+							<p id="popularityArtist">No popularity avaiable...</p>
+							<h4><b>Biography</b></h4>						
+							<p id="biographyArtist">No biography avaiable...</p>
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+
+				  </div>
+				</div>
+
+
+				<div id="modalSong" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+				  <div class="modal-dialog modal-lg">
+				    <div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 id="songName" class="modal-title" id="myModalLabel">Modal title</h4>
+						</div>
+
+						<div class="modal-body">
+							<h4>Album</h4>						
+							<p id="albumName">No album avaiable...</p>
+							<h4><b>Artist</b></h4>
+							<p id="artistName2">No description avaiable...</p>
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+
+				  </div>
+				</div>
+
+
+
 	        </div>
 	        <!-- /#FI CONTINGUT PÀGINA -->
 
@@ -251,12 +299,8 @@
 					<div class="action-secondary">
 
 						<button id="button" type="button" class="btn btn-fab btn-fab-mini" 
-						onclick="playSong('${preview_url}','${album.images[1].url}','${name}','${album.name}','${id}','${artists[0].name}');">
+						onclick="playSong('${preview_url}','${album.images[1].url}','${name}','${album.name}','${id}','${artists[0].name}','${artists[0].id}');">
 						    <i class="material-icons">play_arrow</i>
-						</button>
-
-						<button class="btn btn-fab btn-fab-mini" role="button" data-toggle="collapse" href="#collapseSongs" aria-expanded="false" aria-controls="collapseSongs">
-						  <i class="material-icons">info_outline</i>
 						</button>
 
 						<button id="button" type="button" class="btn btn-fab btn-fab-mini" onclick="addItemPlaylist('${name}','${artists[0].name}','${album.name}','${album.images[1].url}','${preview_url}', this ,'${popularity}','${artists[0].href}');">
@@ -281,15 +325,8 @@
 	            <div class="card">
 	                <div class="card-image">
 	                    <img id="imgAlbum" class="img-responsive" src=${images[1].url}>
-	                    <span id="nameAlbum" class="card-title">
-	                    	<i class="material-icons">album</i></span>${name}
+	                    <span id="nameAlbum" class="card-title">${name}
                     	</span>
-	                </div>
-	                
-	                <div class="card-content">
-	                    <button type="buttonAlbum" class="btn btn-fab btn-fab-mini" data-type="button">
-	                        <i class="material-icons">play_arrow</i>
-	                    </button>
 	                </div>
 	            </div>
 	        </div>
@@ -303,7 +340,7 @@
 				<div class="row-content">
 				  <div class="action-secondary">
 				    
-				    <button type="button" id="button" class="btn btn-fab btn-fab-mini">
+				    <button type="button" id="button" class="btn btn-fab btn-fab-mini" data-type="button" onclick="popModalArtist('${name}','${popularity}');">
 				        <i class="material-icons">info_outline</i>
 				    </button>
 
@@ -327,13 +364,9 @@
 
 					<div class="action-secondary">
 
-						<button id="button" type="button" class="btn btn-fab btn-fab-mini" data-url='${preview_song}' data-image='${image}' data-song-name='${song}' data-album-name='${album}'
-						onclick="playSong('${preview_song}','${image}','${song}','${album}','${id}','${artist}');">
+						<button id="button" type="button" class="btn btn-fab btn-fab-mini"
+						onclick="playSong('${preview_url}','${album.images[1].url}','${name}','${album.name}','${id}','${artists[0].name}','${artists[0].id}');">
 						    <i class="material-icons">play_arrow</i>
-						</button>
-
-						<button id="button" type="button" class="btn btn-fab btn-fab-mini" onclick="deleteItemPlayList(${id});">
-						    <i class="material-icons">info</i>
 						</button>
 						
 						<button id="button" type="button" class="btn btn-fab btn-fab-mini" onclick="deleteItemPlayList(${id});">
@@ -359,16 +392,6 @@
 	                    <img id="imgAlbum" class="img-responsive" src=${image}>
 	                    <span id="nameAlbum" class="card-title">${album}</span>
 	                </div>
-	                
-	                <div class="card-content">
-	                    <button type="buttonAlbum" class="btn btn-fab btn-fab-mini" data-type="button">
-	                        <i class="material-icons">play_arrow</i>
-	                    </button>
-	                </div>
-	                
-	                <div class="card-action">
-	                    <a href="#" target="new_blank"> </a>
-	                </div>
 	            </div>
 	        </div>
 	    </script>
@@ -381,11 +404,11 @@
 	            <div class="row-content">
 	              <div class="action-secondary">
 	                
-	                <button type="button" id="button" class="btn btn-fab btn-fab-mini">
+	                <button type="button" id="button" class="btn btn-fab btn-fab-mini" onclick="popModalArtist('${artist}');">
 	                    <i class="material-icons">info_outline</i>
 	                </button>
 	    
-	                <button type="button" id="button" class="btn btn-fab btn-fab-mini" onclick="deleteArtistPlayList('${artist}');">
+	                <button type="button" id="button" class="btn btn-fab btn-fab-mini" onclick="deleteArtistPlayList('${artist}','${popularity}');">
 	                    <i class="material-icons">delete</i>
 	                </button>
 

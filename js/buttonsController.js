@@ -1,16 +1,20 @@
 // buttonscontroler.js
 var showingMiniplayer = false;
 
-function updatePlayerInfo(urlImage, nameSong, nameAlbum){
+function updatePlayerInfo(urlImage, nameSong, nameAlbum, nameArtist){
     document.getElementById("imagePlayingSong").src = urlImage;
     document.getElementById("namePlayingSong").innerHTML = nameSong;
-    document.getElementById("albumPlayingSong").innerHTML = nameAlbum;     
+    document.getElementById("albumPlayingSong").innerHTML = nameAlbum + " || " + nameArtist;     
+}
+
+function callSnackBarPause(){
+    document.getElementById("snackButton").setAttribute('data-content',"Paused");
+    $("#snackButton").snackbar("toggle");  
 }
 
 function callSnackBar(nameSong, nameAlbum){
-    document.getElementById("snackButton").setAttribute('data-content',"Playing "+ nameSong + ", from " + nameAlbum);
-    $("#snackButton").snackbar("toggle");  
-  
+        document.getElementById("snackButton").setAttribute('data-content',"Playing "+ nameSong + ", from " + nameAlbum);
+        $("#snackButton").snackbar("toggle");  
 }
 
 function callMiniPlayerEffect(){
@@ -32,17 +36,37 @@ function changeIconPlay(play_flag){
         document.getElementById("iconPlayPause").innerHTML = "pause";
     }else{
         document.getElementById("iconPlayPause").innerHTML = "play_arrow";
-        document.getElementById("snackButton").setAttribute('data-content',"Paused");
-        $("#snackButton").snackbar("toggle");
+        callSnackBarPause();
     }
 }
 
-function playSong(url, urlImage, nameSong, nameAlbum, id, nameArtist){
+//Reprodueix la canço corresponent i actualitza la info del miniplayer
+function playSong(url, urlImage, nameSong, nameAlbum, id, nameArtist,IDArtist){
     updatePlayerInfo(urlImage, nameSong, nameAlbum);
     //callSnackBar(nameSong,nameAlbum);
     callMiniPlayerEffect();
     addPlayer(url);
-    addItemSongsPlayed(id,nameArtist,nameSong,nameAlbum,1);       
+    addItemSongsPlayed(id,nameArtist,nameSong,nameAlbum,1,IDArtist);       
+}
+
+function popModalArtist(nameArtist, popularity){
+
+    $.ajax({
+        url:"http://developer.echonest.com/api/v4/artist/biographies?api_key=KLQS7H9RMIF0J7KNS&name=" + nameArtist + "&format=json&results=1&start=0&license=cc-by-sa",
+        type:"GET",
+        dataType:"json",
+        success:function(json){
+            document.getElementById("artistName").innerHTML = "Information about " + nameArtist;
+            document.getElementById("popularityArtist").innerHTML = popularity;
+            document.getElementById("biographyArtist").innerHTML = json.response.biographies[0].text;
+            $("#modalArtist").modal();
+            
+        },error: function(){
+            console.log("error: Cannot get trendingSongs");
+            $("#descriptionArtist").innerHTML = "No biography avaiable...";
+            $("#popularityArtist").innerHTML = "No popularity avaiable...";
+        }
+    });
 }
 
 function show(){
@@ -54,6 +78,9 @@ function show(){
 
         case "searchButton":
             if (checkSubmit()){
+                $("#formSearch").show();
+                $("#resultsSearch").show();
+                $("#recomendations").hide();
                 console.log("PETICIO --> " + document.getElementById("addon2").value);
                 searchAction(document.getElementById("addon2").value);
             };
@@ -132,11 +159,14 @@ $(document).ready(function(){
 
     $('[data-toggle="tooltip"]').tooltip();
     outputPlaylist();
+    updateSuggestions();
 
     $('.form-control').keyup(function (e) {
         if (e.keyCode === 13 && checkSubmit()) {
-           console.log("PETICIO: " + document.getElementById("addon2").value);
-           searchAction(document.getElementById("addon2").value);
+            $("#formSearch").show();
+            $("#resultsSearch").show();
+            $("#recomendations").hide(); 
+            searchAction(document.getElementById("addon2").value);
         }
       });
 

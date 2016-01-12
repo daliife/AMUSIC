@@ -5,7 +5,7 @@ var numArtists = 6;
 var numAlbums = 6;
 var isEmpty;
 var hasAnySongPlayed;
-
+var nameArtist="";
 //Funció que obté les cançons demanades per l'usuari i les afegeix a la llista de cançons obtingudes
 function getSongs(petitionName, numSongs){	
 		
@@ -129,32 +129,34 @@ function changeEmpty(flag){
 }
 
 function checkPlayedDatabase(flag){
+
 	if (flag) {
 		hasAnySongPlayed = true;
-		console.log("Hi ha cancons reproduides!");
 	}else{
 		hasAnySongPlayed = false;
-		console.log("No hi ha cancons reproduides!");
 	};
 }
-
 
 function updateSuggestions(){
 	
 	$("#songsListRecomendation").empty();
 	$("#artistsListRecomendation").empty();
 	$("#albumsListRecomendation").empty();
-	checkEmpty();
+
+	mostPlayed();
 	checkSongsPlayed();
 	
-	if(isEmpty && !hasAnySongPlayed){
-		console.log("No hi ha res");
-		trendingSongs();
-	}else{
-		console.log("Hi ha quelcom");
-		console.log(mostPlayed());
-		recomendSongs(mostPlayed());		
-	}
+	setTimeout(function(){
+   		if(!hasAnySongPlayed){
+
+			trendingSongs();	
+	
+		}else{
+		
+			recomendedSongs(nameArtist);		
+		}
+	
+	}, 500);
 	
 }
 
@@ -174,4 +176,9 @@ function trendingSongs(){
 			console.log("error: Cannot get trendingSongs");
 		}
 	});
+}
+
+function  changeNameArtist(name){
+	nameArtist = name;
+
 }
