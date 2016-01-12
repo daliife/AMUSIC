@@ -56,17 +56,17 @@
 	                </li>
 	                <li>
 	                    <a href="javascript:void(0)" id="linkSongs">
-	                        <span id="sidebarLogo" class="glyphicon glyphicon-music" aria-hidden="true"></span>Songs<span id="songBadge" class="badge text-center">0</span>
+	                        <span id="sidebarLogo" class="glyphicon glyphicon-music" aria-hidden="true"></span>Fav-Songs<span id="songBadge" class="badge text-center">0</span>
 	                    </a>
 	                </li>
 	                <li>
 	                    <a href="javascript:void(0)" id="linkAlbums">
-	                        <span id="sidebarLogo" class="glyphicon glyphicon-book" aria-hidden="true"></span>Albums<span id="albumBadge" class="badge">0</span>
+	                        <span id="sidebarLogo" class="glyphicon glyphicon-book" aria-hidden="true"></span>Fav-Albums<span id="albumBadge" class="badge">0</span>
 	                    </a>
 	                </li>
 	                <li>
 	                    <a href="javascript:void(0)" id="linkArtists">
-	                        <span id="sidebarLogo" class="glyphicon glyphicon-user" aria-hidden="true"></span>Artists<span id="artistBadge" class="badge">0</span>
+	                        <span id="sidebarLogo" class="glyphicon glyphicon-user" aria-hidden="true"></span>Fav-Artists<span id="artistBadge" class="badge">0</span>
 	                    </a>
 	                </li>
 	            </ul>
@@ -138,13 +138,13 @@
 	            <div id="recomendations">
 
 	                <!-- SONGS LIST RECOMENDATIONS-->
-	                <h3 id="etiqueta">Songs</h3> 
+	                <h3 id="etiqueta">Recommended Songs</h3> 
 	                <div id="songsListRecomendation" class="list-group container-fluid"></div>
 	                <!-- ALBUMS LIST RECOMENDATIONS-->
-	                <h3 id="etiqueta">Albums</h3> 
+	                <h3 id="etiqueta">Recommended Albums</h3> 
 	                <div id="albumsListRecomendation" class="container-fluid"></div>
 	                <!-- ARTISTS LIST RECOMENDATIONS-->
-	                <h3 id="etiqueta">Artists</h3>
+	                <h3 id="etiqueta">Recommended Artists</h3>
 	                <div id="artistsListRecomendation" class="list-group container-fluid"></div>  
 	            
 	            </div>
@@ -255,30 +255,6 @@
 				</div>
 
 
-				<div id="modalSong" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-				  <div class="modal-dialog modal-lg">
-				    <div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 id="songName" class="modal-title" id="myModalLabel">Modal title</h4>
-						</div>
-
-						<div class="modal-body">
-							<h4>Album</h4>						
-							<p id="albumName">No album avaiable...</p>
-							<h4><b>Artist</b></h4>
-							<p id="artistName2">No description avaiable...</p>
-						</div>
-
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						</div>
-
-				  </div>
-				</div>
-
-
-
 	        </div>
 	        <!-- /#FI CONTINGUT PÀGINA -->
 
@@ -321,7 +297,7 @@
 	    </script>
 	    <!-- ALBUM TEMPLATE -->
 	    <script id="albumTemplate" type="text/x-jquery-tmpl">
-	        <div id="cardAlbum" class="col-md-2 col-xs-4 col-sd-3">
+	        <div id="cardAlbum" class="col-md-2 col-xs-12 col-sd-6">
 	            <div class="card">
 	                <div class="card-image">
 	                    <img id="imgAlbum" class="img-responsive" src=${images[1].url}>
@@ -364,10 +340,11 @@
 
 					<div class="action-secondary">
 
-						<button id="button" type="button" class="btn btn-fab btn-fab-mini"
-						onclick="playSong('${preview_url}','${album.images[1].url}','${name}','${album.name}','${id}','${artists[0].name}','${artists[0].id}');">
+						<button id="button" type="button" class="btn btn-fab btn-fab-mini" data-url='${preview_song}' data-image='${image}' data-song-name='${song}' data-album-name='${album}'
+						onclick="playSong('${preview_song}','${image}','${song}','${album}','${id}','${artists}','${url_Artist}');">
 						    <i class="material-icons">play_arrow</i>
 						</button>
+
 						
 						<button id="button" type="button" class="btn btn-fab btn-fab-mini" onclick="deleteItemPlayList(${id});">
 						    <i class="material-icons">delete</i>
@@ -386,7 +363,7 @@
 	    </script>
 	    <!-- ALBUM FAVORITED TEMPLATE -->
 	    <script id="albumsFavorited" type="text/x-jquery-tmpl">
-	        <div id="cardAlbum" class="col-md-2 col-xs-4 col-sd-3">
+	        <div id="cardAlbum" class="col-md-2 col-xs-12 col-sd-6">
 	            <div class="card">
 	                <div class="card-image">
 	                    <img id="imgAlbum" class="img-responsive" src=${image}>

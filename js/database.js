@@ -24,7 +24,7 @@ function updateFavoritedSongs(transaction, results) {
     $("#songsListFavorited").empty();
     for (i = 0; i < results.rows.length; i++) {
         var row = results.rows.item(i);
-        $("#songsFavorited").tmpl(row).appendTo("#songsListFavorited");
+       $("#songsFavorited").tmpl(row).appendTo("#songsListFavorited");
     }
 
 }
@@ -151,13 +151,16 @@ function addItemSongsPlayed(id, title, artist, album, timesplayed,IDartist) {
 
 }
 
+
 function updateBadgeSongs(transaction, results) {
     document.getElementById("songBadge").innerHTML = results.rows[0].numSongs;
 }
 
+
 function updateBadgeAlbums(transaction, results) {
     document.getElementById("albumBadge").innerHTML = results.rows[0].numAlbums;
 }
+
 
 function updateBadgeArtists(transaction, results) {
     document.getElementById("artistBadge").innerHTML = results.rows[0].numArtists;;
@@ -207,7 +210,6 @@ function mostPlayed(){
         alert("ERROR: db not found, your browser does not support web sql!");
     }
 }
-
 
 function NoScope2(transaction, results){
     counter=results.rows.length;

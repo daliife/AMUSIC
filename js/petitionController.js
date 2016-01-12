@@ -1,11 +1,13 @@
-//petitioncontroller.js
+// petitioncontroller.js
 var spotifyApi = new SpotifyWebApi();
-var numSongs = 6;
+var numSongs = 10;
 var numArtists = 6;
 var numAlbums = 6;
 var isEmpty;
 var hasAnySongPlayed;
 var nameArtist="";
+
+
 //Funció que obté les cançons demanades per l'usuari i les afegeix a la llista de cançons obtingudes
 function getSongs(petitionName, numSongs){	
 		
@@ -96,6 +98,7 @@ function getRecArtists(petitionName, numArtists){
 		  });
 
 }
+
 //Funció que obté les cançons, albums i artistes recomanats
 function recomendedSongs(artist){
 
@@ -180,5 +183,4 @@ function trendingSongs(){
 
 function  changeNameArtist(name){
 	nameArtist = name;
-
 }

@@ -36,7 +36,7 @@ function changeIconPlay(play_flag){
         document.getElementById("iconPlayPause").innerHTML = "pause";
     }else{
         document.getElementById("iconPlayPause").innerHTML = "play_arrow";
-        callSnackBarPause();
+        //callSnackBarPause();
     }
 }
 
