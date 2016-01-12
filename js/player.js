@@ -15,9 +15,8 @@ function updateSource(url){
     song.src = url;
     song.load();
     song.addEventListener("timeupdate", progress, false);
-    getVolume();
-    //song.volume = 0.5;
-    //document.getElementById("volumeSlider").value = 50;
+    song.volume = 0.5;
+    document.getElementById("volumeSlider").value = 50;
 }
 
 //Reprodueix una cançó concreta a partir de la url passada per paràmetre
@@ -45,7 +44,6 @@ function setTiming(percent){
 //Funció que oculta el minireproductor quan la canço s'acaba
 song.onended = function() {
 	$( "#miniplayer" ).hide('slow');
-    console.log("The song has ended");
 	isPlaying = false;   
 };
 

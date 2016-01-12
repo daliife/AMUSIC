@@ -42,7 +42,7 @@ function changeIconPlay(play_flag){
 
 //Reprodueix la canço corresponent i actualitza la info del miniplayer
 function playSong(url, urlImage, nameSong, nameAlbum, id, nameArtist,IDArtist){
-    updatePlayerInfo(urlImage, nameSong, nameAlbum);
+    updatePlayerInfo(urlImage, nameSong, nameAlbum, nameArtist);
     //callSnackBar(nameSong,nameAlbum);
     callMiniPlayerEffect();
     addPlayer(url);

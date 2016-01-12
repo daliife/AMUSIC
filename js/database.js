@@ -8,8 +8,8 @@ if (window.openDatabase) {
     
     mydb.transaction(function (t) {
         //RESETEJAR LA DATABASE -->
-        t.executeSql("DROP TABLE playlist");
-        t.executeSql("DROP TABLE songsplayed");
+        // t.executeSql("DROP TABLE playlist");
+        // t.executeSql("DROP TABLE songsplayed");
         t.executeSql("CREATE TABLE IF NOT EXISTS playlist (id INTEGER PRIMARY KEY ASC, song TEXT, artist TEXT, album TEXT, image TEXT, preview_song TEXT, popularity INT, url_Artist TEXT)");
         t.executeSql("CREATE TABLE IF NOT EXISTS songsplayed (id TEXT PRIMARY KEY , title TEXT, artist TEXT, album TEXT, counter INT,artistID TEXT)");
     });

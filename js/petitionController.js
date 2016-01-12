@@ -103,7 +103,6 @@ function getRecArtists(petitionName, numArtists){
 function recomendedSongs(artist){
 
 	spotifyApi.getArtistRelatedArtists(artist, null).then(function(data) {  
-	    console.log(data);
 	    for(var i = 0; i<numArtists;i++){
 			getRecArtists(data.artists[i].name,1);
 		}
