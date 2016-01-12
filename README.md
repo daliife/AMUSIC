@@ -23,11 +23,11 @@ Podreu accedir al repo des d'[aquí](https://github.com/daliife/AMUSIC).
 
 ## Captures de pantalla
 ###Screenshot 1
-![Screenshot 1](http://i.imgur.com/9Nbd0fF)
+![Screenshot 1](http://i.imgur.com/9Nbd0fF.png)
 ###Screenshot 2
-![Screenshot 2](http://i.imgur.com/qq4EOol)
+![Screenshot 2](http://i.imgur.com/qq4EOol.png)
 ###Screenshot 3
-![Screenshot 3](http://i.imgur.com/V9flRzL)
+![Screenshot 3](http://i.imgur.com/V9flRzL.png)
 ###Screenshot 4
 ![Screenshot 4](http://i.imgur.com/jqTZhkO.png)
 ###Screenshot 5
