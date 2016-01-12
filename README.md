@@ -9,6 +9,15 @@ Aquesta aplicació ha estat creada per:
 ## Descripció
 L’aplicació Amusic és una petita aplicació web que recomana i busca músiques a l’spotify. En aquesta podrem escoltar qualsevol que es vulgui i afegir a una llista de favorites les cançons que l’usuari desitgi.
 
+## Manual d'instruccions
+L'aplicació consta de 5 apartats principals:
+* Buscador: permet cercar qualsevol canço, artista o àlbum.
+* Recomanacions: mostrarà una selecció de cançons, artistes i albums segons el gust de l'usuari.
+* Llista de favorits de cançons: Mostra les cançons favorites.
+* Llista de favorits de àlbums: Mostra els àlbums favorits.
+* Llista de favorits de artistes: Mostra els artistes favorits.
+
+
 ## Link del repositori de github
 Podreu accedir al repo des d'[aquí](https://github.com/daliife/AMUSIC).
 
